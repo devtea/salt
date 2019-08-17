@@ -1,3 +1,6 @@
 centos_packages:
   pkg.installed:
-    - name: epel-release
+    - names: 
+      - epel-release
+      - policycoreutils-python
+

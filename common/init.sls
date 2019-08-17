@@ -2,9 +2,19 @@
 common_packages:
   pkg.installed:
     - names: 
+      - bind-utils
+      - git
       - htop
+      - iotop
+      - lsof
       - {{ packages.vim }}
       - zsh
+      - python
+      - rsync
+      - strace
+      - tmux
+      - traceroute
+      - tcpdump
 
 set_timezone:
   timezone.system:
