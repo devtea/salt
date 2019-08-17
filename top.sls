@@ -3,6 +3,7 @@ base:
     - match: grain
     - common.centos
     - sshd.selinux
+    - yum
 
   "*":
     - common
