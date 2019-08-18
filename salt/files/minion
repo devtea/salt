@@ -10,3 +10,5 @@ pillar_roots:
     - /srv/salt/pillar/
 
 state_verbose: False
+log_level: error
+log_level_logfile: info
