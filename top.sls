@@ -4,6 +4,7 @@ base:
     - common.centos
     - sshd.selinux
     - yum
+    - yum.auto_update
 
   "*":
     - common

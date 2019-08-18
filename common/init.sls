@@ -10,6 +10,7 @@ common_packages:
       - {{ packages.vim }}
       - zsh
       - python
+      - python36-dateutil
       - rsync
       - strace
       - tmux
