@@ -9,6 +9,7 @@ base:
     - common
     - common.users
     - salt.minion
+    - salt.auto_highstate
     - sshd
 
   "app:mailserver":
