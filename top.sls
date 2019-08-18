@@ -13,4 +13,4 @@ base:
 
   "app:mailserver":
     - match: grain
-    - mailserver
+    - app.mailserver

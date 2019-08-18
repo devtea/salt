@@ -1,0 +1,6 @@
+mailserver:
+  domains:
+    - example.com: 
+        'user1': "destination@domain.com"
+        'user2': "destination@domain.com"
+  other: thing

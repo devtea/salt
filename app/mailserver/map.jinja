@@ -1,0 +1,5 @@
+# Load defaults.yaml
+{% import_yaml 'app/mailserver/defaults.yaml' as defaults %}
+
+# Merge with pillar
+{% set mailserver = salt["pillar.get"]("mailserver", default=defaults.mailserver, merge=True) %}

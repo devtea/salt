@@ -1,0 +1,8 @@
+# email forwarding definitions - be especially careful with your yaml for this
+{% for domain in mailserver.domains -%}
+{% for domain_name, user_dict in domain.items() -%}
+{% for user, destination in user_dict.items() -%}
+{{ user ~ "@" ~ domain_name }} {{ destination }}
+{% endfor -%}
+{% endfor -%}
+{% endfor -%}
