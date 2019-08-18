@@ -10,7 +10,7 @@ extend:
       - source: salt://app/mailserver/files/main.cf
       - template: jinja
       - context:
-          mailserver: {{ mailserver | tojson }}
+          mailserver: {{ mailserver }}
       - require:
         - pkg: postfix_pkg
 
@@ -21,7 +21,7 @@ postfix_virtual_alias_maps:
     - source: salt://app/mailserver/files/virtual
     - template: jinja
     - context: 
-        mailserver: {{ mailserver | tojson }}
+        mailserver: {{ mailserver }}
 
 postfix_reload_lookup_table:
   cmd.run: 

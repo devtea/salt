@@ -684,5 +684,5 @@ readme_directory = /usr/share/doc/postfix-2.10.1/README_FILES
 ##################
 
 # Forward mail for the following domains
-virtual_alias_domains = {% for domain in mailserver.domains %}{{ domain.keys()[0] ~ " " }}{% endfor %}
+virtual_alias_domains = {% for domain in mailserver.domains %}{% for value in domain %}{{ value ~ " " }}{% endfor %}{% endfor %}
 virtual_alias_maps = hash:/etc/postfix/virtual
