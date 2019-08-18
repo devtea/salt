@@ -10,12 +10,18 @@ common_packages:
       - {{ packages.vim }}
       - zsh
       - python
+      - python36-PyYAML
       - python36-dateutil
       - rsync
       - strace
       - tmux
       - traceroute
       - tcpdump
+
+bootstrap_cleanup:
+  pkg.removed:
+    - name: python34
+
 
 set_timezone:
   timezone.system:
