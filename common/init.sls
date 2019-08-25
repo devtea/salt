@@ -1,30 +1,26 @@
-{% from "common/map.jinja" import packages with context %}
+{% from "common/map.jinja" import common with context %}
+
 common_packages:
   pkg.installed:
     - names: 
-      - bind-utils
+      - {{ common.packages.bind_tools }}
       - git
       - htop
       - iotop
       - lsof
-      - {{ packages.vim }}
+      - {{ common.packages.vim }}
       - zsh
       - python
-      - python36-PyYAML
-      - python36-dateutil
+      - {{ common.packages.pydateutil }}
+      - {{ common.packages.pyyaml }}
       - rsync
       - strace
+      - tig
       - tmux
       - traceroute
       - tcpdump
-
-bootstrap_cleanup:
-  pkg.removed:
-    - name: python34
-
+      - wget
 
 set_timezone:
   timezone.system:
     - name: 'America/Chicago'
-
-

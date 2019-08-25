@@ -1,3 +1,5 @@
+{% from "common/map.jinja" import common with context %}
+
 salt_minion_config:
   file.managed:
     - name: /etc/salt/minion
@@ -17,8 +19,8 @@ salt_dirs:
     - names:
       - /srv/salt/states
       - /srv/salt/pillar
-    - user: tea
-    - group: tea
+    - user: {{ common.primary_user.username }}
+    - group: {{ common.primary_user.username }}
     - dir_mode: 755
     - file_mode: 644
     - recurse: 

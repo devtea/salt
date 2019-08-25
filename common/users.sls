@@ -1,28 +1,30 @@
-shared_user:
+{% from "common/map.jinja" import common with context %}
+
+primary_user_{{ common.primary_user.username }}:
   group.present:
-    - name: tea
-    - gid: 6666
+    - name: {{ common.primary_user.username }}
+    - gid: {{ common.primary_user.gid }}
   user.present:
-    - name: tea
-    - uid: 6666
-    - gid: 6666
+    - name: {{ common.primary_user.username }}
+    - uid: {{ common.primary_user.uid }}
+    - gid: {{ common.primary_user.gid }}
     - shell: /bin/zsh
     - enforce_password: true
     - password: '!!'
     - require: 
-      - group: shared_user
+      - group: primary_user_{{ common.primary_user.username }}
 
-shared_user_keys:
+{% if "ssh_keys" in common.primary_user and common.primary_user.ssh_keys|length > 0 %}
+primary_user_keys_{{ common.primary_user.username }}:
   ssh_auth.present:
-    - user: tea
-    - names: 
-      - 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKv4Ewwyr8377S9oGPr6ZclHBt6afmqH32LuBFyi8/XR Shared_key_generated_on_Moria'
-      - 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEr3cezNLi6e9WdQhjBmvPd/zliWMZfBkE1lMVIyWy/o key_generated_for_roaming_access_on_Sat,_Oct__1,_2016_12:07:41_PM'
+    - user: {{ common.primary_user.username }}
+    - names: {{ common.primary_user.ssh_keys }}
     - require: 
-      - user: shared_user
+      - user: primary_user_{{ common.primary_user.username }}
+{% endif %}
 
-shared_user_sudo:
+primary_user_sudo_{{ common.primary_user.username }}:
   file.managed:
-    - name: /etc/sudoers.d/tea
+    - name: /etc/sudoers.d/{{ common.primary_user.username }}
     - contents: |
-        tea ALL=(ALL) NOPASSWD: ALL
+        {{ common.primary_user.username }} ALL=(ALL) NOPASSWD: ALL
