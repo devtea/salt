@@ -24,3 +24,14 @@ common_packages:
 set_timezone:
   timezone.system:
     - name: 'America/Chicago'
+
+locale_us_utf8:
+  locale.present:
+    - name: en_US.UTF-8
+
+set_default_locale:
+  locale.system:
+    - name: en_US.UTF-8
+    - require:
+      - locale: locale_us_utf8
+
