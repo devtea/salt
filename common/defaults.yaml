@@ -8,5 +8,5 @@ common:
     gid: 6666
     ssh_keys:
       - 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKv4Ewwyr8377S9oGPr6ZclHBt6afmqH32LuBFyi8/XR Shared_key_generated_on_Moria'
-      - 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEr3cezNLi6e9WdQhjBmvPd/zliWMZfBkE1lMVIyWy/o key_generated_for_roaming_access_on_Sat,_Oct__1,_2016_12:07:41_PM'
+      - 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEr3cezNLi6e9WdQhjBmvPd/zliWMZfBkE1lMVIyWy/o key_generated_for_roaming_access_on_Sat_Oct__1_2016_12:07:41_PM'
       - 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN24+qk5XV7+xIcZCMFWoAVMuOX2S2/5T77OKBqpJ6Ye Asus_Chromebook_2019-08-24'
