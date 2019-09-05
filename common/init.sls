@@ -20,6 +20,7 @@ common_packages:
       - traceroute
       - tcpdump
       - wget
+      - zsh
 
 set_timezone:
   timezone.system:
