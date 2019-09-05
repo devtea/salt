@@ -18,7 +18,7 @@ primary_user_{{ common.primary_user.username }}:
 primary_user_keys_{{ common.primary_user.username }}:
   ssh_auth.present:
     - user: {{ common.primary_user.username }}
-    - names: {{ common.primary_user.ssh_keys }}
+    - names: {{ common.primary_user.ssh_keys|tojson }}
     - require: 
       - user: primary_user_{{ common.primary_user.username }}
 {% endif %}
