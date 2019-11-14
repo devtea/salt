@@ -1,0 +1,6 @@
+minecraft:
+  version: 1.14.4
+  url: https://launcher.mojang.com/v1/objects/3dc3d84a581f14691199cf6831b71ed1296a9fdf/server.jar
+  hash: "5ecdedab3a6e129321a444490d0a467c25ea702a24a99cebe3b6aed41f8f5729"
+  java_args: "--nogui"
+  memory: "3g"

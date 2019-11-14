@@ -1,0 +1,12 @@
+[Unit]
+Description=Minecraft
+Wants=network.target
+
+[Service]
+User=minecraft
+Group=minecraft
+WorkingDirectory=/srv/minecraft
+ExecStart=/usr/bin/java -Xms{{ minecraft.memory }} -Xmx{{ minecraft.memory }} -jar /srv/minecraft/minecraft_server_current.jar {{ minecraft.java_args }}
+
+[Install]
+WantedBy=multi-user.target

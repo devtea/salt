@@ -1,0 +1,3 @@
+{% import_yaml "minecraft/defaults.yaml" as defaults %}
+
+{% set minecraft = salt["pillar.get"]("minecraft", default=defaults.minecraft, merge=True) %}
