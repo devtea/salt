@@ -4,3 +4,5 @@ minecraft:
   hash: "5ecdedab3a6e129321a444490d0a467c25ea702a24a99cebe3b6aed41f8f5729"
   java_args: "--nogui"
   memory: "3g"
+  rcon_enabled: true
+  rcon_pass: asdf1234

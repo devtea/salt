@@ -64,3 +64,15 @@ minecraft_service:
   service.running:
     - name: minecraft
 
+minecraft_rcon_tar:
+  file.managed: 
+    - name: /vagrant/mcrcon-0.0.5-linux-x86-64.tar.gz
+    - source: https://github.com/Tiiffi/mcrcon/releases/download/v0.0.5/mcrcon-0.0.5-linux-x86-64.tar.gz
+    - source_hash: 5e7d9a562a736c5ca4ee174ec33869687df439889637f9457103d6a5e830a538
+
+minecraft_rcon_extract:
+  archive.extracted:
+    - name: /usr/local/bin
+    - source: /vagrant/mcrcon-0.0.5-linux-x86-64.tar.gz
+    - if_missing: /usr/local/bin/mcrcon
+    - enforce_toplevel: False
