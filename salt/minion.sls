@@ -14,6 +14,24 @@ salt_minion_service:
     - require:
       - file: salt_minion_config
 
+{% if grains["env"] is defined and grains["env"] == "vagrant" %}
+
+salt_dir:
+  file.directory:
+    - name: /srv/salt/
+    - user: vagrant
+    - group: vagrant
+salt_state_symlink:
+  file.symlink:
+    - name: /srv/salt/states
+    - target: /vagrant/salt/roots
+salt_pillar_symlink:
+  file.symlink:
+    - name: /srv/salt/pillar
+    - target: /vagrant/salt/pillar
+
+{% else %}
+
 salt_dirs:
   file.directory:
     - names:
@@ -27,4 +45,4 @@ salt_dirs:
       - user
       - group
       - mode
-
+{% endif %}
