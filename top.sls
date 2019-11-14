@@ -16,3 +16,8 @@ base:
   "app:mailserver":
     - match: grain
     - app.mailserver
+
+  "app:minecraft": 
+    - match: grain
+    - java
+    - minecraft
