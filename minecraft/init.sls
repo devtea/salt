@@ -27,6 +27,24 @@ minecraft_server_current:
       - file: minecraft_server_jar
     - watch_in:
       - service: minecraft_service
+# Restore latest backup if it exists when this is a new server
+minecraft_restore_from_backup:
+  file.managed:
+    - name: /srv/minecraft/restore.sh
+    - source: salt://minecraft/files/restore.sh
+    - mode: 775
+    - user: minecraft
+    - group: minecraft
+  cmd.run:
+    - name: /srv/minecraft/restore.sh
+    - runas: minecraft
+    - creates: /home/minecraft/.restore_script_flag
+    - onchanges:
+      - user: minecraft_user
+    - require: 
+      - file: minecraft_restore_from_backup
+    - require_in: 
+      - service: minecraft_service
 
 minecraft_service_file:
   file.managed:
