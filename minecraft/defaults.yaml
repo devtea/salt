@@ -2,7 +2,9 @@ minecraft:
   version: 1.14.4
   url: https://launcher.mojang.com/v1/objects/3dc3d84a581f14691199cf6831b71ed1296a9fdf/server.jar
   hash: "5ecdedab3a6e129321a444490d0a467c25ea702a24a99cebe3b6aed41f8f5729"
-  java_args: "--nogui"
+  java_args: "-XX:+UseConcMarkSweepGC"
   memory: "3g"
-  rcon_enabled: true
+  rcon_enabled: "true"
   rcon_pass: asdf1234
+  spigot_url: https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  dynmap_url: https://www.spigotmc.org/resources/dynmap.274/download?version=285130

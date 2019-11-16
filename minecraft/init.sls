@@ -7,6 +7,8 @@ minecraft_user:
     - enforce_password: true
     - password: '!!'
 
+{# Vanilla minecraft #}
+{#}
 minecraft_server_jar:
   file.managed:
     - name: /srv/minecraft/minecraft_server_{{ minecraft.version }}.jar
@@ -27,6 +29,43 @@ minecraft_server_current:
       - file: minecraft_server_jar
     - watch_in:
       - service: minecraft_service
+{#}
+
+minecraft_spigot_build_file:
+  file.directory:
+    - name: /srv/minecraft/spigot_build/
+    - user: minecraft
+    - group: minecraft
+
+minecraft_spigot_buildtools:
+  file.managed:
+    - name: /srv/minecraft/spigot_build/BuildTools.jar
+    - source: {{ minecraft.spigot_url }}
+    - skip_verify: True
+    - user: minecraft
+    - group: minecraft
+    - require: 
+      - file: minecraft_spigot_build_file
+      - user: minecraft_user
+
+minecraft_spigot_build:
+  file.managed:
+    - name: /srv/minecraft/build_spigot.sh
+    - source: salt://minecraft/files/build_spigot.sh
+    - template: jinja
+    - context: 
+      minecraft: {{ minecraft | tojson }}
+    - user: minecraft
+    - group: minecraft
+    - mode: 775
+  cmd.script:
+    - name: /srv/minecraft/build_spigot.sh
+    - runas: minecraft
+    - creates: /srv/minecraft/.build_script_flag
+    - require:
+      - file: minecraft_spigot_buildtools
+      - file: minecraft_spigot_build
+
 # Restore latest backup if it exists when this is a new server
 minecraft_restore_from_backup:
   file.managed:
@@ -54,7 +93,7 @@ minecraft_service_file:
     - context: 
       minecraft: {{ minecraft | tojson }}
     - require:
-      - file: minecraft_server_current
+      - file: minecraft_spigot_build
     - watch_in:
       - service: minecraft_service
 
@@ -137,13 +176,22 @@ timer_{{ timer }}_timer:
     - onchanges_in:
       - cmd: minecraft_systemd_reload_daemon
 
-
 timer_{{ timer }}_enable:
   cmd.run:
-    - name: 'systemctl enable {{ timer }}.timer; systemctl start {{ timer }}.timer'
+    - name: 'systemctl enable {{ timer }}.timer'
     - creates: /etc/systemd/syste/timers.target.wants/{{ timer }}.timer
     - onchanges:
       - file: timer_{{ timer }}_timer
+
+timer_{{ timer }}_start:
+  cmd.run:
+    - name: 'systemctl start {{ timer }}.timer'
+    - onchanges:
+      - file: timer_{{ timer }}_timer
+    - require:
+      - service: minecraft_service
+      - archive: minecraft_rcon_extract
+      - cmd: minecraft_restore_from_backup
 
 {% endfor %}
 
