@@ -228,3 +228,11 @@ minecraft_systemd_reload_daemon:
     - onchanges:
       - file: minecraft_service_file
 
+minecraft_server_icon:
+  file.copy:
+    - name: /srv/minecraft/server-icon.png
+    - source: /vagrant/server-icon.png
+    - user: minecraft
+    - group: minecraft
+    - mode: 664
+
