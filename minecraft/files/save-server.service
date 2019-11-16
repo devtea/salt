@@ -1,0 +1,7 @@
+[Unit]
+Description=Save World to Disk
+
+[Service]
+Type=simple
+ExecStart=/etc/systemd/system/save-server.sh
+SuccessExitStatus=0 1

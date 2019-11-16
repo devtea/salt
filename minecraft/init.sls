@@ -52,6 +52,7 @@ minecraft_eula:
 minecraft_server_properties:
   file.managed:
     - name: /srv/minecraft/server.properties
+    - source: salt://minecraft/files/server.properties
     - user: minecraft
     - group: minecraft
     - template: jinja
@@ -76,3 +77,60 @@ minecraft_rcon_extract:
     - source: /vagrant/mcrcon-0.0.5-linux-x86-64.tar.gz
     - if_missing: /usr/local/bin/mcrcon
     - enforce_toplevel: False
+
+
+#######################
+#       Timers        #
+#######################
+# Requires that three files exist and named for the timer
+# files/NAME.timer
+# files/NAME.service
+# files/NAME.sh
+{% for timer in ["save-server", "backup-server"] %}
+timer_{{ timer }}_script:
+  file.managed:
+    - name: /etc/systemd/system/{{ timer }}.sh
+    - source: salt://minecraft/files/{{ timer }}.sh
+    - template: jinja
+    - mode: 755
+    - context: 
+      minecraft: {{ minecraft | tojson }}
+
+timer_{{ timer }}_service:
+  file.managed:
+    - name: /etc/systemd/system/{{ timer }}.service
+    - source: salt://minecraft/files/{{ timer }}.service
+    - template: jinja
+    - context: 
+      minecraft: {{ minecraft | tojson }}
+    - onchanges_in:
+      - cmd: minecraft_systemd_reload_daemon
+
+timer_{{ timer }}_timer:
+  file.managed:
+    - name: /etc/systemd/system/{{ timer }}.timer
+    - source: salt://minecraft/files/{{ timer }}.timer
+    - template: jinja
+    - context: 
+      minecraft: {{ minecraft | tojson }}
+    - require:
+      - file: timer_{{ timer }}_script
+      - file: timer_{{ timer }}_service
+    - onchanges_in:
+      - cmd: minecraft_systemd_reload_daemon
+
+
+timer_{{ timer }}_enable:
+  cmd.run:
+    - name: 'systemctl enable {{ timer }}.timer; systemctl start {{ timer }}.timer'
+    - creates: /etc/systemd/syste/timers.target.wants/{{ timer }}.timer
+    - onchanges:
+      - file: timer_{{ timer }}_timer
+
+{% endfor %}
+
+minecraft_systemd_reload_daemon:
+  cmd.run:
+    - name: systemctl daemon-reload
+    - onchanges:
+      - file: minecraft_service_file

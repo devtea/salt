@@ -1,12 +1,23 @@
 [Unit]
 Description=Minecraft
 Wants=network.target
+After=local-fs.target network.target
 
 [Service]
 User=minecraft
 Group=minecraft
+
+KillMode=none
+
+NoNewPrivileges=true
+PrivateDevices=True
+PrivateTmp=True
+ProtectHome=True
+ProtectSystem=full
+
 WorkingDirectory=/srv/minecraft
 ExecStart=/usr/bin/java -Xms{{ minecraft.memory }} -Xmx{{ minecraft.memory }} -jar /srv/minecraft/minecraft_server_current.jar {{ minecraft.java_args }}
+ExecStop=/usr/local/bin/mcrcon -H 127.0.0.1 -p {{ minecraft.rcon_pass }} stop
 
 [Install]
 WantedBy=multi-user.target

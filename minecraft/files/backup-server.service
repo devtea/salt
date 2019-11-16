@@ -1,0 +1,10 @@
+[Unit]
+Description=Backup world
+
+[Service]
+Type=simple
+WorkingDirectory=/srv/minecraft
+ExecStart=/etc/systemd/system/backup-server.sh
+User=minecraft
+Group=minecraft
+
