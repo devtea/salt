@@ -19,5 +19,8 @@ tar -czvf "${BACKUP_NAME}" /srv/minecraft/backup/world_one/
 /usr/local/bin/mcrcon -H 127.0.0.1 -p "${PASS}" "say Backup complete." || true
 rsync "${BACKUP_NAME}" /vagrant/backups/
 
+# Clean up old and malformed backups
 find /srv/minecraft/backup/ -type f -iname '*.tgz' -mtime +7 -delete
+find /srv/minecraft/backup/ -type f -iname '*.tgz' ! -size +2M -delete
 find /vagrant/backups/ -type f -iname '*.tgz' -mtime +30 -delete
+find /vagrant/backups/ -type f -iname '*.tgz' ! -size +2M -delete
