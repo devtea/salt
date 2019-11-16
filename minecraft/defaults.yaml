@@ -7,4 +7,4 @@ minecraft:
   rcon_enabled: "true"
   rcon_pass: asdf1234
   spigot_url: https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-  dynmap_url: https://www.spigotmc.org/resources/dynmap.274/download?version=285130
+  dynmap_url: https://dynmap.us/builds/dynmap/Dynmap-3.0-beta-5-spigot.jar

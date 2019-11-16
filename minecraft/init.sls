@@ -41,6 +41,7 @@ minecraft_spigot_buildtools:
   file.managed:
     - name: /srv/minecraft/spigot_build/BuildTools.jar
     - source: {{ minecraft.spigot_url }}
+    - makedirs: true
     - skip_verify: True
     - user: minecraft
     - group: minecraft
@@ -115,6 +116,32 @@ minecraft_server_properties:
     - template: jinja
     - context: 
       minecraft: {{ minecraft | tojson }}
+    - require_in:
+      - service: minecraft_service
+
+minecraft_dynmap_jar:
+  file.managed:
+    - name: /vagrant/dynmap.jar
+    - source: {{ minecraft.dynmap_url }}
+    - source_hash: 1f4ba568044355e8b0c9f9095048f54e06a38f141b91b0454b75c9381378f67e
+
+minecraft_spigot_plugins_dir:
+  file.directory:
+    - name: /srv/minecraft/plugins
+    - user: minecraft
+    - group: minecraft
+    - mode: 775
+
+minecraft_dynmap_jar_deploy:
+  file.copy:
+    - name: /srv/minecraft/plugins/dynmap.jar
+    - source: /vagrant/dynmap.jar
+    - makedirs: true
+    - user: minecraft
+    - group: minecraft
+    - mode: 664
+    - require: 
+      - file: minecraft_spigot_plugins_dir
     - require_in:
       - service: minecraft_service
 
@@ -200,3 +227,4 @@ minecraft_systemd_reload_daemon:
     - name: systemctl daemon-reload
     - onchanges:
       - file: minecraft_service_file
+
