@@ -7,30 +7,6 @@ minecraft_user:
     - enforce_password: true
     - password: '!!'
 
-{# Vanilla minecraft #}
-{#}
-minecraft_server_jar:
-  file.managed:
-    - name: /srv/minecraft/minecraft_server_{{ minecraft.version }}.jar
-    - source: {{ minecraft.url }}
-    - source_hash: {{ minecraft.hash }}
-    - user: minecraft
-    - group: minecraft
-    - require: 
-      - user: minecraft_user
-
-minecraft_server_current:
-  file.symlink:
-    - name: /srv/minecraft/minecraft_server_current.jar
-    - target: /srv/minecraft/minecraft_server_{{ minecraft.version }}.jar
-    - user: minecraft
-    - group: minecraft
-    - require:
-      - file: minecraft_server_jar
-    - watch_in:
-      - service: minecraft_service
-{#}
-
 minecraft_spigot_build_file:
   file.directory:
     - name: /srv/minecraft/spigot_build/
