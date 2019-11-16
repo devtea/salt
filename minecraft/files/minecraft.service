@@ -4,10 +4,9 @@ Wants=network.target
 After=local-fs.target network.target
 
 [Service]
+WorkingDirectory=/srv/minecraft
 User=minecraft
 Group=minecraft
-
-KillMode=none
 
 NoNewPrivileges=true
 PrivateDevices=True
@@ -15,10 +14,13 @@ PrivateTmp=True
 ProtectHome=True
 ProtectSystem=full
 
-WorkingDirectory=/srv/minecraft
 ExecStart=/usr/bin/java -Xms{{ minecraft.memory }} -Xmx{{ minecraft.memory }} {{ minecraft.java_args }} -jar /srv/minecraft/spigot_current.jar
 ExecStop=/usr/local/bin/mcrcon -H 127.0.0.1 -p {{ minecraft.rcon_pass }} stop
+TimeoutStopSec=60s
 SuccessExitStatus=0 1
+
+Restart=on-failure
+RestartSec=15s
 
 [Install]
 WantedBy=multi-user.target
