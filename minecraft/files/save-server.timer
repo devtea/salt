@@ -3,7 +3,7 @@ Description=Save World to Disk
 Requires=save-server.service
 
 [Timer]
-OnCalendar=*-*-* *:00/5:00
+OnCalendar=*-*-* *:00/30:00
 Persistent=true
 
 [Install]
