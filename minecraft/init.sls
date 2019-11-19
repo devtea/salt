@@ -212,3 +212,12 @@ minecraft_server_icon:
     - group: minecraft
     - mode: 664
 
+minecraft_console_helper:
+  file.managed:
+    - name: /usr/local/bin/mc_run
+    - mode: 755
+    - contents:
+      - "#!/bin/bash"
+      - /usr/local/bin/mcrcon -H 127.0.0.1 -p "{{ minecraft.rcon_pass }}" "$*"
+
+
