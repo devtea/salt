@@ -124,6 +124,7 @@ minecraft_dynmap_jar_deploy:
 minecraft_service:
   service.running:
     - name: minecraft
+    - enable: true
 
 minecraft_rcon_tar:
   file.managed: 
