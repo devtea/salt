@@ -21,3 +21,12 @@ base:
     - match: grain
     - java
     - minecraft
+
+  "app:minecraft_dynmap_reverse_proxy": 
+    - match: grain
+    - minecraft.dynmap_reverse_proxy
+    - nginx
+
+  "app:nginx": 
+    - match: grain
+    - nginx
