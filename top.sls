@@ -1,4 +1,11 @@
 base:
+  "*":
+    - common
+    - common.users
+    - salt.minion
+    - salt.auto_highstate
+    - sshd
+
   'os_family:RedHat':
     - match: grain
     - common.centos
@@ -6,12 +13,6 @@ base:
     - yum
     - yum.auto_update
 
-  "*":
-    - common
-    - common.users
-    - salt.minion
-    - salt.auto_highstate
-    - sshd
 
   "app:mailserver":
     - match: grain
