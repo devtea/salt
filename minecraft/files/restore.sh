@@ -1,11 +1,17 @@
 #!/bin/bash
-set -euo pipefail
+# Script to find the newest (if any) backup in the backup folder
+# and restore it to the default server location.
 
+# strict mode
+set -euo pipefail
+IFS=$'\n\t'
+
+# Redirect all script output to a log file 
 exec >> /srv/minecraft/restore.log
 exec 2>&1
 
+# Prevent this script from being run by root.
 [ $UID -eq 0 ] && exit 7
-cd /srv/minecraft
 
 # Let salt know this has run, successfully or otherwise
 touch /srv/minecraft/.restore_script_flag
@@ -18,13 +24,17 @@ for file in "/vagrant/backups"/*backup*tgz; do
 done
 
 # No files? exit.
-[ -z $latest ] && exit 1
+[ -z $latest ] && exit 0
 set -u
 
-# TODO move existing files if they exist
+# move existing files if they exist
+[ -e /srv/minecraft/world_one ] && mv /srv/minecraft/world_one{,.bak}
+[ -e /srv/minecraft/plugins ] && mv /srv/minecraft/plugins{,.bak}
+mkdir /srv/minecraft/old
+mv /srv/minecraft/*backup*.tgz /srv/minecraft/old || true
 
+# Copy the backup file 
 rsync $latest /srv/minecraft/
-tar -xf /srv/minecraft/*backup*.tgz
-
-mv ./srv/minecraft/backup/* .
-rm -rf ./srv
+cd /
+tar -xf /srv/minecraft/$( basename $latest )
+rm -f /srv/minecraft/$( basename $latest )
