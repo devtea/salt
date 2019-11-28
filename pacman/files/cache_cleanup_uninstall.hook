@@ -1,0 +1,9 @@
+[Trigger]
+Operation = Remove
+Type = Package
+Target = *
+
+[Action]
+Description = Cleaning uninstalled packages from the cache
+When = PostTransaction
+Exec = /usr/bin/paccache -ruv --nocolor
