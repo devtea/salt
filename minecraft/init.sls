@@ -1,11 +1,24 @@
 {% from "minecraft/map.jinja" import minecraft with context %}
+
+# TODO add permissions for minecraft to start/manage service
+# see if you can get the nginx ports to nonstandard 80/443 for vagrant
+#
+
 minecraft_user:
   user.present:
     - name: minecraft
     - shell: /usr/bin/nologin
     - home: /srv/minecraft
-    - enforce_password: true
+    - enforce_password: True
     - password: '!!'
+
+minecraft_backup_folder:
+  file.directory:
+    - name: /srv/backups/srv/minecraft
+    - user: minecraft
+    - group: minecraft
+    - mode: 755
+    - makedirs: True
 
 minecraft_spigot_build_file:
   file.directory:
@@ -17,7 +30,7 @@ minecraft_spigot_buildtools:
   file.managed:
     - name: /srv/minecraft/spigot_build/BuildTools.jar
     - source: {{ minecraft.spigot_url }}
-    - makedirs: true
+    - makedirs: True
     - skip_verify: True
     - user: minecraft
     - group: minecraft
@@ -112,7 +125,7 @@ minecraft_dynmap_jar_deploy:
   file.copy:
     - name: /srv/minecraft/plugins/dynmap.jar
     - source: /vagrant/dynmap.jar
-    - makedirs: true
+    - makedirs: True
     - user: minecraft
     - group: minecraft
     - mode: 664
@@ -124,7 +137,7 @@ minecraft_dynmap_jar_deploy:
 minecraft_service:
   service.running:
     - name: minecraft
-    - enable: true
+    - enable: True
 
 minecraft_rcon_tar:
   file.managed: 
