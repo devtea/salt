@@ -13,6 +13,9 @@ base:
     - yum
     - yum.auto_update
 
+  'os_family:Arch':
+    - match: grain
+    - pacman
 
   "app:mailserver":
     - match: grain
