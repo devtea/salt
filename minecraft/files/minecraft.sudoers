@@ -1,0 +1,8 @@
+Cmnd_Alias      MINECRAFT = /usr/sbin/systemctl start minecraft,\
+                            /usr/sbin/systemctl stop minecraft,\
+                            /usr/sbin/systemctl restart minecraft,\
+                            /usr/sbin/systemctl status minecraft,\
+                            /usr/sbin/systemctl enable minecraft,\
+                            /usr/sbin/systemctl disable minecraft
+
+minecraft ALL=(ALL) NOPASSWD: MINECRAFT

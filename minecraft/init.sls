@@ -12,6 +12,11 @@ minecraft_user:
     - enforce_password: True
     - password: '!!'
 
+minecraft_sudoers:
+  file.managed:
+    - name: /etc/sudoers.d/minecraft
+    - source: salt://minecraft/files/minecraft.sudoers
+
 minecraft_backup_folder:
   file.directory:
     - name: /srv/backups/srv/minecraft
