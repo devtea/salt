@@ -1,4 +1,14 @@
 base:
+  #
+  # Items to run before anything else like setting up mounts
+  #
+  "app:vagrant_srv":
+    - match: grain
+    - common.vagrant_srv
+
+  #
+  # Common items
+  #
   "*":
     - common
     - common.users
@@ -6,6 +16,9 @@ base:
     - salt.auto_highstate
     - sshd
 
+  # 
+  # OS specific states
+  #
   'os_family:RedHat':
     - match: grain
     - common.centos
@@ -17,6 +30,9 @@ base:
     - match: grain
     - pacman
 
+  #
+  # App grains
+  #
   "app:mailserver":
     - match: grain
     - app.mailserver
@@ -34,3 +50,4 @@ base:
   "app:nginx": 
     - match: grain
     - nginx
+
