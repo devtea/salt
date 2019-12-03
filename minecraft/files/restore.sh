@@ -31,10 +31,11 @@ set -u
 [ -e /srv/minecraft/world_one ] && mv /srv/minecraft/world_one{,.bak}
 [ -e /srv/minecraft/plugins ] && mv /srv/minecraft/plugins{,.bak}
 mkdir /srv/minecraft/old
-mv /srv/minecraft/*backup*.tgz /srv/minecraft/old || true
 
-# Copy the backup file 
-rsync $latest /srv/minecraft/
-cd /
-tar -xf /srv/minecraft/$( basename $latest )
-rm -f /srv/minecraft/$( basename $latest )
+# extract the backup, ensuring we're in the right location
+cd /srv/minecraft
+mkdir /srv/minecraft/plugins/
+tar -xf $latest
+
+# copy plugins
+rsync -av --delete /vagrant/backups/plugins/dynmap /srv/minecraft/plugins
