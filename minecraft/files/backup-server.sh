@@ -28,10 +28,10 @@ cd "${BACKUP_DIR}"
 nice tar -czvf "${BACKUP_NAME}" ./world*
 
 # Copy from the local backup location to the host system on /vagrant
-nice ionice -c 2 rsync "${BACKUP_NAME}" /vagrant/backups/
+nice ionice -c 2 mv "${BACKUP_NAME}" /vagrant/backups/
 
 $MCRCON_CMD "say Backing up server plugins..." || true
-nice ionice -c 2 rsync -av --delete /srv/minecraft/plugins "/vagrant/backups/"
+nice ionice -c 2 rsync -av --whole-file --inplace --delete /srv/minecraft/plugins "/vagrant/backups/"
 
 $MCRCON_CMD "say Backup complete." || true
 
