@@ -201,7 +201,7 @@ timer_{{ timer }}_timer:
 timer_{{ timer }}_enable:
   cmd.run:
     - name: 'systemctl enable {{ timer }}.timer'
-    - creates: /etc/systemd/syste/timers.target.wants/{{ timer }}.timer
+    - creates: /etc/systemd/system/timers.target.wants/{{ timer }}.timer
     - onchanges:
       - file: timer_{{ timer }}_timer
 

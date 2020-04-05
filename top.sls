@@ -50,4 +50,5 @@ base:
   "app:nginx": 
     - match: grain
     - nginx
+    - nginx.certbot
 
