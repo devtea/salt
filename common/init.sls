@@ -8,7 +8,6 @@ common_packages:
       - htop
       - iotop
       - lsof
-      - {{ common.packages.vim }}
       - zsh
       - python
       - {{ common.packages.pydateutil }}

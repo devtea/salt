@@ -3,13 +3,11 @@
 {# os specific packages #}
 {% set packages = salt['grains.filter_by']({
     "Arch": {
-        "vim": "vim",
         "bind_tools": "bind-tools",
         "pyyaml": "python-pyaml",
         "pydateutil": "python-dateutil",
     },
     "RedHat": {
-        "vim": "vim-enhanced",
         "bind_tools": "bind-utils",
         "pyyaml": "python36-PyYAML",
         "pydateutil": "python36-dateutil",

@@ -1,8 +1,16 @@
+centos_epel:
+  pkg.installed:
+    name: epel-release
+
 centos_packages:
   pkg.installed:
     - names: 
-      - epel-release
       - policycoreutils-python
+      - python3-neovim
+      - neovim
+    - require: 
+      - pkg: centos_epel
+
 
 bootstrap_cleanup:
   pkg.removed:
