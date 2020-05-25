@@ -25,7 +25,7 @@ $MCRCON_CMD save-on || true
 
 # Then cd and tar the files using a "full" path for simple restore.
 cd "${BACKUP_DIR}"
-nice tar -czvf "${BACKUP_NAME}" ./world*
+nice tar --exclude='world*.tgz' -czvf "${BACKUP_NAME}" ./world*
 
 # Copy from the local backup location to the host system on /vagrant
 nice ionice -c 2 mv "${BACKUP_NAME}" /vagrant/backups/
