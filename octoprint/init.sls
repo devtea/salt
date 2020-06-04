@@ -1,6 +1,8 @@
 octo_user:
   user.present:
     - name: octo
+    - groups:
+      - uucp
 
 octo_prereqs:
   pkg.installed:
