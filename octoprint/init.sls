@@ -12,6 +12,7 @@ octo_prereqs:
       - python2-setuptools
       - gcc
       - libyaml
+      - ffmpeg
 
 octo_dir:
   file.directory:
@@ -27,6 +28,7 @@ octo_install:
   cmd.script: 
     - name: salt://octoprint/files/setup.sh
     - creates: /home/octo/octoprint/venv/bin/octoprint
+    - runas: octo
     - require:
       - file: octo_dir
 
