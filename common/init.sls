@@ -29,7 +29,7 @@ set_timezone:
 
 timezone_manual:
   file.symlink:
-    - name: /etc/timezone
+    - name: /etc/localtime
     - target: /usr/share/zoneinfo/America/Chicago
     - onfail:
       - timezone: set_timezone
