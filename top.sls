@@ -52,3 +52,6 @@ base:
     - nginx
     - nginx.certbot
 
+  "app:octoprint":
+    - match: grain
+    - octoprint
