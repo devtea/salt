@@ -8,12 +8,14 @@ common_packages:
       - htop
       - iotop
       - lsof
-      - zsh
+      - lvm2
+      - neovim
       - python
       - {{ common.packages.pydateutil }}
       - {{ common.packages.pyyaml }}
       - rsync
       - strace
+      - sudo
       - tig
       - tmux
       - traceroute
