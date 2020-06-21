@@ -27,6 +27,13 @@ set_timezone:
   timezone.system:
     - name: 'America/Chicago'
 
+timezone_manual:
+  file.symlink:
+    - name: /etc/timezone
+    - target: /usr/share/zoneinfo/America/Chicago
+    - onfail:
+      - timezone: set_timezone
+
 locale_us_utf8:
   locale.present:
     - name: en_US.UTF-8
