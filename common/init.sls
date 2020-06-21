@@ -44,3 +44,12 @@ set_default_locale:
     - require:
       - locale: locale_us_utf8
 
+alarm_cleanup:
+  user.absent:
+    - name: alarm
+    - purge: true
+
+pi_cleanup:
+  user.absent:
+    - name: pi
+    - purge: true
