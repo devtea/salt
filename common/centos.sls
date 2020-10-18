@@ -1,6 +1,6 @@
 centos_epel:
   pkg.installed:
-    name: epel-release
+    - name: epel-release
 
 centos_packages:
   pkg.installed:
