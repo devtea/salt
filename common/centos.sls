@@ -6,8 +6,8 @@ centos_packages:
   pkg.installed:
     - names: 
       - policycoreutils-python
-      - python3-neovim
       - neovim
+      - {{ common.packages.python_neovim }}
     - require: 
       - pkg: centos_epel
 
