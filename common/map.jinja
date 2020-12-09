@@ -19,4 +19,9 @@
 {# do salt['defaults.merge'](defaults['packages'], packages) #}
 {% do defaults["common"]["packages"].update(packages) %}
 
+
+{# merge in pillar #}
 {% set common = salt["pillar.get"]("common", default=defaults["common"], merge=True) %}
+
+{# merge in grains #}
+{% do common.update(salt["grains.get"]("common", {})) %}
