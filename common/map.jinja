@@ -23,5 +23,5 @@
 {# merge in pillar #}
 {% set common = salt["pillar.get"]("common", default=defaults["common"], merge=True) %}
 
-{# merge in grains #}
-{% do common.update(salt["grains.get"]("common", {})) %}
+{# merge in grains for user override #}
+{% do common["primary_user"].update(salt["grains.get"]("common:primary_user", {})) %}
