@@ -62,7 +62,7 @@ base:
     - octoprint
 
   # Tailscale vpn
-  "g@app:tailscale and g@os:Raspbian":
+  "G@app:tailscale and G@os:Raspbian":
     - match: compound
     - tailscale.repo_debian
     - tailscale
