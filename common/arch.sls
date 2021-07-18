@@ -6,3 +6,8 @@ arch_packages:
       - base-devel
       - neovim
       - {{ common.packages.python_neovim }}
+
+alarm_cleanup:
+  user.absent:
+    - name: alarm
+    - purge: true
