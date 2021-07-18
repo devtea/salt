@@ -29,6 +29,11 @@ base:
   'os_family:Arch':
     - match: grain
     - pacman
+    - common.arch
+
+  'os:Raspbian':
+    - match: grain
+    - common.raspian
 
   #
   # App grains
@@ -55,3 +60,9 @@ base:
   "app:octoprint":
     - match: grain
     - octoprint
+
+  # Tailscale vpn
+  "g@app:tailscale and g@os:raspbian":
+    - match: compound
+    - tailscale.repo_debian
+    - tailscale
