@@ -69,3 +69,9 @@ base:
   "G@app:tailscale and G@os_family:Arch":
     - match: compound
     - tailscale
+
+  # Tailscale exit nodes
+  "app:tailscale_exit_node":
+    - match: grain
+    - tailscale.exit_node
+
