@@ -66,3 +66,6 @@ base:
     - match: compound
     - tailscale.repo_debian
     - tailscale
+  "G@app:tailscale and G@os_family:Arch":
+    - match: compound
+    - tailscale
