@@ -6,6 +6,9 @@ base:
     - match: grain
     - common.vagrant_srv
 
+  "app:auto_highstate":
+    - match: grain
+    - salt.auto_highstate
   #
   # Common items
   #
@@ -13,7 +16,6 @@ base:
     - common
     - common.users
     - salt.minion
-    - salt.auto_highstate
     - sshd
 
   # 
