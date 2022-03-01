@@ -10,7 +10,7 @@ common_packages:
       - lsof
       - lvm2
       - neovim
-      - python
+      - {{ common.packages.python }}
       - {{ common.packages.pydateutil }}
       - {{ common.packages.pyyaml }}
       - rsync

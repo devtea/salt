@@ -4,18 +4,21 @@
 {% set packages = salt['grains.filter_by']({
     "Arch": {
         "bind_tools": "bind-tools",
+        "python": "python",
         "pyyaml": "python-pyaml",
         "pydateutil": "python-dateutil",
         "python_neovim": "python-neovim"
     },
     "RedHat": {
         "bind_tools": "bind-utils",
+        "python": "python",
         "pyyaml": "python36-PyYAML",
         "pydateutil": "python36-dateutil",
         "python_neovim": "python36-neovim"
     },
     "Debian": {
         "bind_tools": "dnsutils",
+        "python": "python3",
         "pyyaml": "python3-yaml",
         "pydateutil": "python3-dateutil",
         "python_neovim": "python3-neovim"
