@@ -77,3 +77,6 @@ base:
     - match: grain
     - tailscale.exit_node
 
+  # Tilt pi devices (using tilt-pitch)
+  "tilt*":
+    - tilt

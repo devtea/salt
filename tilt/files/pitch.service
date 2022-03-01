@@ -1,0 +1,14 @@
+[Unit]
+Description=Tilt Pitch service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=tilt
+ExecStart=/home/tilt/pitch_venv/bin/python3 -m pitch
+AmbientCapabilities=cap_net_raw cap_net_admin+eip
+
+[Install]
+WantedBy=multi-user.target
+
