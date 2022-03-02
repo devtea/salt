@@ -1,10 +1,9 @@
 {% set tilt = pillar["tilt"] %}
-# setcap 'cap_net_raw,cap_net_admin+eip' $(readlink -f $(which python3))
+
 tilt_user:
   user.present:
     - name: tilt
-    #- shell: /usr/sbin/nologin
-    - shell: /bin/bash
+    - shell: /usr/sbin/nologin
     - createhome: True
     - gid: daemon
 
@@ -23,7 +22,6 @@ tilt_pitch_venv:
     - name: /home/tilt/pitch_venv/
     - user: tilt
     - pip_upgrade: true
-    # - venv_bin: "/usr/bin/python3 -m venv"
     - require:
       - pkg: tilt_requirements
 
@@ -42,12 +40,8 @@ tilt_pip_update:
 #      - pkg: tilt_requirements
 #      - user: tilt_user
 #      - virtualenv: tilt_pitch_venv
-#
-#tilt_pip_update_fix:
-#  cmd.run:
-#    - name: pip install pip -U
-#    - onfail:
-#      - pip: tilt_pip_update
+#    - require_in:
+#      - pip: tilt_pitch_pip
 
 tilt_pitch_pip:
   pip.installed:
@@ -56,8 +50,6 @@ tilt_pitch_pip:
       - influxdb-client
     - user: tilt
     - bin_env: /home/tilt/pitch_venv
-    - require:
-      - pip: tilt_pip_update
 
 tilt_pitch_config:
   file.managed:
@@ -91,10 +83,3 @@ tilt_pitch_service:
       - file: tilt_service_file
       - cmd: tilt_reload_daemon
       - pip: tilt_pitch_pip
-
-
-
-
-
-# Service
-#runs python3 -m pitch

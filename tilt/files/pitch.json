@@ -1,3 +1,5 @@
 {
-    "brewfather_custom_stream_url": "{ tilt.brewfather_url }"
+    "brewfather_custom_stream_url": "{{ tilt.brewfather_url }}",
+    "log_file_path": "/home/tilt/pitch_log.json",
+    "log_file_max_mb": 50
 }

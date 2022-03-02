@@ -7,6 +7,7 @@ Wants=network-online.target
 Type=simple
 User=tilt
 ExecStart=/home/tilt/pitch_venv/bin/python3 -m pitch
+WorkingDirectory=/home/tilt/
 AmbientCapabilities=cap_net_raw cap_net_admin+eip
 
 [Install]
