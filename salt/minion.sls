@@ -7,12 +7,19 @@ salt_minion_config:
     - watch_in:
       - service: salt_minion_service
 
+{% if "app" in salt['grains'] and "auto_highstate" in salt["grains"]["app"] %}
 salt_minion_service:
   service.running:
     - name: salt-minion
     - enable: true
     - require:
       - file: salt_minion_config
+{% else %}
+salt_minion_service:
+  service.dead:
+    - name: salt-minion
+    - enable: false
+{% endif %}
 
 {% if grains["env"] is defined and grains["env"] == "vagrant" %}
 
