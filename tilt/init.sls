@@ -25,23 +25,12 @@ tilt_pitch_venv:
     - require:
       - pkg: tilt_requirements
 
-# TODO Upgrade all pip packages on highstate
 tilt_pip_update:
   cmd.run:
-    - name: /home/tilt/pitch_venv/pip install --upgrade pip setuptools
+    - name: /home/tilt/pitch_venv/bin/pip install --upgrade pip setuptools
+    - user: tilt
     - onchanges:
       - virtualenv: tilt_pitch_venv
-
-#tilt_pip_update:
-#  pip.uptodate:
-#    - user: tilt
-#    - bin_env: /home/tilt/pitch_venv
-#    - require:
-#      - pkg: tilt_requirements
-#      - user: tilt_user
-#      - virtualenv: tilt_pitch_venv
-#    - require_in:
-#      - pip: tilt_pitch_pip
 
 tilt_pitch_pip:
   pip.installed:
@@ -50,6 +39,23 @@ tilt_pitch_pip:
       - influxdb-client
     - user: tilt
     - bin_env: /home/tilt/pitch_venv
+    - require: 
+      - virtualenv: tilt_pitch_venv
+
+# This runs every highstate. Not super auto-highstate friendly
+tilt_pitch_update:
+  cmd.run:
+    - name: >
+        /home/tilt/pitch_venv/bin/pip 
+        install
+        --upgrade
+        --upgrade-strategy eager 
+        tilt-pitch
+        influxdb-client
+    - user: tilt
+    - require:
+      - pkg: tilt_requirements
+      - virtualenv: tilt_pitch_venv
 
 tilt_pitch_config:
   file.managed:
@@ -80,6 +86,7 @@ tilt_pitch_service:
     - name: pitch
     - enable: true
     - require:
-      - file: tilt_service_file
       - cmd: tilt_reload_daemon
+    - watch:
+      - file: tilt_service_file
       - pip: tilt_pitch_pip
