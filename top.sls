@@ -24,9 +24,13 @@ base:
   'os_family:RedHat':
     - match: grain
     - common.centos
-    - sshd.selinux
     - dnf
     - dnf.auto_update
+
+  'G@os_family:Redhat not G@virtual:container':
+    - match: compound
+    - common.selinux
+    - sshd.selinux
 
   'os_family:Arch':
     - match: grain
