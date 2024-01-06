@@ -19,4 +19,4 @@ bootstrap_cleanup:
 
 selinux_enforce:
   selinux.mode:
-    name: enforcing
+    - name: enforcing
