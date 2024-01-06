@@ -1,3 +1,4 @@
+{% from "common/map.jinja" import common with context %}
 centos_epel:
   pkg.installed:
     - name: epel-release

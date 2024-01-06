@@ -15,7 +15,7 @@ base:
   "*":
     - common
     - common.users
-    - salt.minion
+    # - salt.minion
     - sshd
 
   # 
@@ -25,8 +25,8 @@ base:
     - match: grain
     - common.centos
     - sshd.selinux
-    - yum
-    - yum.auto_update
+    - dnf
+    - dnf.auto_update
 
   'os_family:Arch':
     - match: grain

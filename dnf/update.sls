@@ -1,4 +1,4 @@
-yum_requirements:
+dnf_requirements:
   pkg.installed: 
     - name: yum-utils
 
@@ -13,6 +13,6 @@ reboot_after_update:
     - name: shutdown -r 5
     - unless: needs-restarting -r
     - require:
-      - pkg: yum_requirements
+      - pkg: dnf_requirements
     - watch: 
       - pkg: update_system

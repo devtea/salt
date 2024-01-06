@@ -7,7 +7,7 @@ salt_minion_config:
     - watch_in:
       - service: salt_minion_service
 
-{% if "app" in salt['grains'] and "auto_highstate" in salt["grains"]["app"] %}
+{% if grains["app"] is defined and "auto_highstate" in grains["app"] %}
 salt_minion_service:
   service.running:
     - name: salt-minion
