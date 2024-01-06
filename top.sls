@@ -15,7 +15,7 @@ base:
   "*":
     - common
     - common.users
-    # - salt.minion
+    - salt.minion
     - sshd
 
   # 
