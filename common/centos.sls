@@ -14,6 +14,3 @@ bootstrap_cleanup:
   pkg.removed:
     - name: python34
 
-selinux_enforce:
-  selinux.mode:
-    - name: enforcing
