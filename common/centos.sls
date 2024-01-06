@@ -13,8 +13,10 @@ centos_packages:
     - require: 
       - pkg: centos_epel
 
-
 bootstrap_cleanup:
   pkg.removed:
     - name: python34
 
+selinux_enforce:
+  selinux.mode:
+    name: enforcing
