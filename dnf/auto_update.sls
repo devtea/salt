@@ -1,6 +1,6 @@
 auto_update:
   schedule.present:
-    - function: state.apply 
+    - function: state.sls
     - job_args:
       - dnf.update
     - when: 1:00am
