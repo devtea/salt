@@ -67,6 +67,10 @@ base:
     - match: grain
     - octoprint
 
+  "app:salt-master":
+    - match: grain
+    - salt.master
+
   # Tailscale vpn
   "G@app:tailscale and G@os:Raspbian":
     - match: compound
