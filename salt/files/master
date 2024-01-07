@@ -843,7 +843,7 @@ gitfs_ssl_verify: False
 #  - cmd_yaml: cat /etc/salt/yaml
 ext_pillar:
   - git:
-    - main {{ salt.master.pillar_git }}
+    - main {{ salt.master.pillar_git }}:
       - env: base
 
 # A list of paths to be recursively decrypted during pillar compilation.
