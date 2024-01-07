@@ -249,7 +249,6 @@ user: salt
 # include:
 #   - /etc/salt/extra_config
 
-
 #####  Large-scale tuning settings   #####
 ##########################################
 # Max open files
@@ -308,7 +307,6 @@ user: salt
 # to the defined interval
 #master_stats: False
 #master_stats_event_iter: 60
-
 
 #####        Security settings       #####
 ##########################################
@@ -573,7 +571,6 @@ user: salt
 # Enable Cython for master side modules:
 #cython_enable: False
 
-
 #####      State System settings     #####
 ##########################################
 # The state system uses a "top" file to tell the minions what environment to
@@ -794,6 +791,9 @@ fileserver_backend:
 # authenticate is protected by a passphrase.
 #gitfs_passphrase: ''
 
+# Defines which branch/tag should be used as the base environment.
+gitfs_base: main
+
 # When using the git fileserver backend at least one git remote needs to be
 # defined. The user running the salt master will need read access to the repo.
 #
@@ -843,8 +843,8 @@ gitfs_ssl_verify: False
 #  - cmd_yaml: cat /etc/salt/yaml
 ext_pillar:
   - git:
-    - main {{ salt.master.pillar_git }}:
-      - env: base
+      - main {{ salt.master.pillar_git }}:
+          - env: base
 
 # A list of paths to be recursively decrypted during pillar compilation.
 # Entries in this list can be formatted either as a simple string, or as a
@@ -887,7 +887,6 @@ ext_pillar:
 # keep in mind that setting this flag to anything other than the default of True
 # is a security concern, you may want to try using the ssh transport.
 pillar_gitfs_ssl_verify: False
-
 # The pillar_opts option adds the master configuration file data to a dict in
 # the pillar called "master". This is used to set simple configurations in the
 # master config file that can then be used on minions.
@@ -1042,7 +1041,6 @@ pillar_gitfs_ssl_verify: False
 # can be utilized. Available options are the same as ``pillar_cache_backend``.
 #gpg_cache_backend: disk
 
-
 ######        Reactor Settings        #####
 ###########################################
 # Define a salt reactor. See https://docs.saltproject.io/en/latest/topics/reactor/
@@ -1056,7 +1054,6 @@ pillar_gitfs_ssl_verify: False
 
 #Define the queue size for workers in the reactor.
 #reactor_worker_hwm: 10000
-
 
 #####          Syndic settings       #####
 ##########################################
@@ -1094,7 +1091,6 @@ pillar_gitfs_ssl_verify: False
 # The number of seconds for the salt client to wait for additional syndics to
 # check in with their lists of expected minions before giving up.
 #syndic_wait: 5
-
 
 #####      Peer Publish settings     #####
 ##########################################
@@ -1156,7 +1152,6 @@ pillar_gitfs_ssl_verify: False
 #     - network.*
 #     - disk.*
 
-
 #####         Logging settings       #####
 ##########################################
 # The location of the master log file
@@ -1217,7 +1212,6 @@ pillar_gitfs_ssl_verify: False
 #
 #log_granular_levels: {}
 
-
 #####         Node Groups           ######
 ##########################################
 # Node groups allow for logical groupings of minion nodes. A group consists of
@@ -1233,14 +1227,12 @@ pillar_gitfs_ssl_verify: False
 #    - 'or'
 #    - 'G@foo:baz'
 
-
 #####     Range Cluster settings     #####
 ##########################################
 # The range server (and optional port) that serves your cluster information
 # https://github.com/ytoolshed/range/wiki/%22yamlfile%22-module-file-spec
 #
 #range_server: range:80
-
 
 #####  Windows Software Repo settings #####
 ###########################################
@@ -1250,7 +1242,6 @@ pillar_gitfs_ssl_verify: False
 # List of git repositories to include with the local repo:
 #winrepo_remotes_ng:
 #  - 'https://github.com/saltstack/salt-winrepo-ng.git'
-
 
 #####  Windows Software Repo settings - Pre 2015.8 #####
 ########################################################
@@ -1277,7 +1268,6 @@ pillar_gitfs_ssl_verify: False
 # Which returner(s) will be used for minion's result:
 #return: mysql
 
-
 ######    Miscellaneous  settings     ######
 ############################################
 # Default match type for filtering events tags: startswith, endswith, find, regex, fnmatch
@@ -1292,7 +1282,6 @@ pillar_gitfs_ssl_verify: False
 # The value of the parameters can be either one module or a comma separated list of them.
 #thin_extra_mods: foo,bar
 #min_extra_mods: foo,bar,baz
-
 
 ######      Keepalive settings        ######
 ############################################
@@ -1325,7 +1314,6 @@ pillar_gitfs_ssl_verify: False
 # use OS defaults, typically 75 seconds on Linux, see
 # /proc/sys/net/ipv4/tcp_keepalive_intvl.
 #tcp_keepalive_intvl: -1
-
 
 #####         NetAPI settings          #####
 ############################################
