@@ -1,5 +1,3 @@
-{% from "common/map.jinja" import common with context %}
-
 salt_minion_config:
   file.managed:
     - name: /etc/salt/minion

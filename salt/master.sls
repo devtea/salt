@@ -1,4 +1,4 @@
-{% from "common/map.jinja" import common with context %}
+{% from "salt/map.jinja" import salt with context %}
 
 salt_requisites:
   pkg.installed:
