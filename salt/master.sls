@@ -9,6 +9,9 @@ salt_master_config:
   file.managed:
     - name: /etc/salt/master
     - source: salt://salt/files/master
+    - template: jinja
+    - context: 
+        salt: {{ salt | tojson }}
 
 salt_master_service:
   service.running:

@@ -1,0 +1,2 @@
+# grab settings from pillar
+{% set salt = salt["pillar.get"]("salt", default={}, merge=True) %}
