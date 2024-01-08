@@ -1,9 +1,9 @@
 {% from "salt/map.jinja" import salt with context %}
 
 salt_requisites:
-  pkg.installed:
+  pip.installed:
     - names:
-      - python3-pygit2
+      - pygit2
 
 salt_master_config:
   file.managed:
@@ -18,6 +18,6 @@ salt_master_service:
     - name: salt-master
     - enable: true
     - require:
-      - pkg: salt_requisites
+      - pip: salt_requisites
     - watch:
       - file: salt_master_config
