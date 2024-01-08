@@ -805,8 +805,8 @@ fileserver_backend:
 #  - file:///var/git/saltmaster
 gitfs_remotes:
   - "{{ salt.master.states_git }}":
-      - base: main
-      - ssl_verify: False
+    - base: main
+    - ssl_verify: False
 
 # The gitfs_ssl_verify option specifies whether to ignore ssl certificate
 # errors when contacting the gitfs backend. You might want to set this to
