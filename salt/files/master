@@ -843,8 +843,8 @@ gitfs_remotes:
 ext_pillar:
   - git:
     - main {{ salt.master.pillar_git }}:
-        - env: base
-        - ssl_verify: False
+      - env: base
+      - ssl_verify: False
 # A list of paths to be recursively decrypted during pillar compilation.
 # Entries in this list can be formatted either as a simple string, or as a
 # key/value pair, with the key being the pillar location, and the value being
