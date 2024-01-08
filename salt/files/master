@@ -600,7 +600,7 @@ user: salt
 # state system data is printed to the display. By default all data is printed.
 # The state_verbose setting can be set to True or False, when set to False
 # all data that has a result of True and no changes will be suppressed.
-#state_verbose: True
+state_verbose: False
 
 # The state_output setting controls which results will be output full multi line
 # full, terse - each state will be full/terse
@@ -608,7 +608,7 @@ user: salt
 # changes - states with changes and errors will be full
 # full_id, mixed_id, changes_id and terse_id are also allowed;
 # when set, the state ID will be used as name in the output
-state_output: changes
+#state_output: full
 
 # The state_output_diff setting changes whether or not the output from
 # successful states is returned. Useful when even the terse output of these
@@ -791,9 +791,6 @@ fileserver_backend:
 # authenticate is protected by a passphrase.
 #gitfs_passphrase: ''
 
-# Defines which branch/tag should be used as the base environment.
-gitfs_base: main
-
 # When using the git fileserver backend at least one git remote needs to be
 # defined. The user running the salt master will need read access to the repo.
 #
@@ -807,14 +804,16 @@ gitfs_base: main
 #  - git://github.com/saltstack/salt-states.git
 #  - file:///var/git/saltmaster
 gitfs_remotes:
-  - "{{ salt.master.states_git }}"
+  - {{ salt.master.states_git }}
+    - base: main
+    - ssl_verify: False
 
 # The gitfs_ssl_verify option specifies whether to ignore ssl certificate
 # errors when contacting the gitfs backend. You might want to set this to
 # false if you're using a git backend that uses a self-signed certificate but
 # keep in mind that setting this flag to anything other than the default of True
 # is a security concern, you may want to try using the ssh transport.
-gitfs_ssl_verify: False
+#gitfs_ssl_verify: True
 #
 # The gitfs_root option gives the ability to serve files from a subdirectory
 # within the repository. The path is defined relative to the root of the
@@ -845,6 +844,7 @@ ext_pillar:
   - git:
       - main {{ salt.master.pillar_git }}:
           - env: base
+          - ssl_verify: False
 
 # A list of paths to be recursively decrypted during pillar compilation.
 # Entries in this list can be formatted either as a simple string, or as a
@@ -886,7 +886,8 @@ ext_pillar:
 # false if you're using a git backend that uses a self-signed certificate but
 # keep in mind that setting this flag to anything other than the default of True
 # is a security concern, you may want to try using the ssh transport.
-pillar_gitfs_ssl_verify: False
+#pillar_gitfs_ssl_verify: True
+
 # The pillar_opts option adds the master configuration file data to a dict in
 # the pillar called "master". This is used to set simple configurations in the
 # master config file that can then be used on minions.
