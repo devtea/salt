@@ -1,5 +1,6 @@
 selinux_packages:
   pkg.installed:
+    - pkgs:
       - policycoreutils
       - policycoreutils-python-utils
       - selinux-policy
