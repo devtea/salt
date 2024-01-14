@@ -45,6 +45,10 @@ base:
   #
   # App grains
   #
+  "app:gitlab":
+    - match: grain
+    - gitlab
+
   "app:mailserver":
     - match: grain
     - app.mailserver
