@@ -1,4 +1,4 @@
 {% import_yaml "sshd/defaults.yaml" as defaults %}
 
 # Pull in pillar overrides
-{% set sshd = salt["pillar.get"]("sshd", defaults=defaults.sshd, merge=True) %}
+{% set sshd = salt["pillar.get"]("sshd", default=defaults.sshd, merge=True) %}
