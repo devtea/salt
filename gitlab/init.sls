@@ -10,7 +10,7 @@ gitlab_repo:
         https://packages.gitlab.com/gitlab/gitlab-ce/gpgkey
         https://packages.gitlab.com/gitlab/gitlab-ce/gpgkey/gitlab-gitlab-ce-3D645A26AB9FBD22.pub.gpg
     - gpgcheck: 1
-    - repo_gpgcheck: 1
+    - repo_gpgcheck: 0
     - enabled: 1
     - metadata_expire: 300
     - sslverify: 1
@@ -28,6 +28,22 @@ gitlab_config:
   file.managed:
     - name: /etc/gitlab/gitlab.rb
     - source: salt://gitlab/files/gitlab.rb
-    - template: jinja 
+    - mode: "0600"
+    - template: jinja
     - context:
         gitlab: {{ gitlab | tojson }}
+    - require: 
+      - pkg: gitlab_pkgs
+
+gitlab_service:
+  service.running:
+    - name: gitlab-runsvdir
+    - enable: True
+    - require:
+      - file: gitlab_config
+
+gitlab_reconfigure:
+  cmd.run:
+    - name: gitlab-ctl reconfigure
+    - onchanges:
+      - file: gitlab_config
