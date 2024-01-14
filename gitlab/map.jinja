@@ -1,0 +1,4 @@
+{% import_yaml "gitlab/defaults.yaml" as defaults %}
+
+# pull in pillar overrides
+{% set gitlab = salt['pillar.get']('gitlab', default=defaults.gitlab, merge=True) %}
