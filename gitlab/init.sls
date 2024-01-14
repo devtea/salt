@@ -6,7 +6,7 @@ gitlab_repo:
     - name: gitlab_gitlab-ce
     - humanname: Gitlab CE
     - baseurl: https://packages.gitlab.com/gitlab/gitlab-ce/el/$releasever/$basearch
-    - gpgkey: >-
+    - gpgkey: |-
         https://packages.gitlab.com/gitlab/gitlab-ce/gpgkey
         https://packages.gitlab.com/gitlab/gitlab-ce/gpgkey/gitlab-gitlab-ce-3D645A26AB9FBD22.pub.gpg
     - gpgcheck: 1
