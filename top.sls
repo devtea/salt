@@ -26,6 +26,7 @@ base:
     - common.centos
     - dnf
     - dnf.auto_update
+    - sshd.firewalld
 
   'G@os_family:Redhat not G@virtual:container':
     - match: compound
