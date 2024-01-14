@@ -1,3 +1,5 @@
+{% from "gitlab/map.jinja" import gitlab with context %}
+
 # Salt state for gitlab
 gitlab_repo:
   pkgrepo.managed:
@@ -27,3 +29,5 @@ gitlab_config:
     - name: /etc/gitlab/gitlab.rb
     - source: salt://gitlab/files/gitlab.rb
     - template: jinja 
+    - context:
+        gitlab: {{ gitlab | tojson }}
