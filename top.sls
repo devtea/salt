@@ -20,6 +20,7 @@ base:
   
   "* not G@virtual:container":
     - tuned
+    - chrony
 
   # 
   # OS specific states
