@@ -11,7 +11,7 @@ tuned_service_base:
 tuned_conf:
   file.managed:
     - name: /etc/tuned/tuned-main.conf
-    - source: salt://tuned/tuned-main.conf
+    - source: salt://tuned/files/tuned-main.conf
     - user: root
     - group: root
     - mode: "0644"
