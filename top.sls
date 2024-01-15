@@ -27,7 +27,7 @@ base:
   #
   'os_family:RedHat':
     - match: grain
-    - common.centos
+    - common.rhel
     - dnf
     - dnf.auto_update
 
