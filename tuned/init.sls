@@ -11,7 +11,7 @@ tuned_service_base:
 tuned_conf:
   file.managed:
     - name: /etc/tuned/tuned-main.conf
-    - source: salt://tuned/active_profile
+    - source: salt://tuned/tuned-main.conf
     - user: root
     - group: root
     - mode: "0644"
@@ -19,7 +19,7 @@ tuned_conf:
 tuned_standard_conf:
   file.managed: 
     - name: /etc/tuned/standard/tuned.conf
-    - source: salt://tuned/files/tuned.conf
+    - source: salt://tuned/files/standard.conf
     - makedirs: True
 
 tuned_active_profile:
