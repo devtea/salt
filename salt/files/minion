@@ -711,7 +711,7 @@ grains_refresh_every: 15
 # state system data is printed to the display. By default all data is printed.
 # The state_verbose setting can be set to True or False, when set to False
 # all data that has a result of True and no changes will be suppressed.
-#state_verbose: True
+state_verbose: False
 
 # The state_output setting controls which results will be output full multi line
 # full, terse - each state will be full/terse
@@ -719,7 +719,7 @@ grains_refresh_every: 15
 # changes - states with changes and errors will be full
 # full_id, mixed_id, changes_id and terse_id are also allowed;
 # when set, the state ID will be used as name in the output
-state_output: changes
+# state_output: full
 
 # The state_output_diff setting changes whether or not the output from
 # successful states is returned. Useful when even the terse output of these
