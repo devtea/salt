@@ -20,7 +20,7 @@ salt_master_service:
     - name: salt-master
     - enable: true
     - require:
-      - pip: salt_requisites
+      - pkg: salt_requisites
     - watch:
       - file: salt_master_config
 
