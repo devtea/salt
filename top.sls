@@ -17,6 +17,7 @@ base:
     - common.users
     - salt.minion
     - sshd
+    - tailscale
   
   "* not G@virtual:container":
     - tuned
@@ -30,6 +31,7 @@ base:
     - common.rhel
     - dnf
     - dnf.auto_update
+    - tailscale.repo_rhel
 
   'G@os_family:Redhat not G@virtual:container':
     - match: compound
