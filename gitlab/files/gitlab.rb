@@ -163,7 +163,7 @@ external_url '{{ gitlab.url }}'
 # gitlab_rails['stuck_ci_jobs_worker_cron'] = "0 0 * * *"
 # gitlab_rails['expire_build_artifacts_worker_cron'] = "*/7 * * * *"
 # gitlab_rails['environments_auto_stop_cron_worker_cron'] = "24 * * * *"
-# gitlab_rails['pipeline_schedule_worker_cron'] = "19 * * * *"
+gitlab_rails['pipeline_schedule_worker_cron'] = "*/5 * * * *"
 # gitlab_rails['ci_archive_traces_cron_worker_cron'] = "17 * * * *"
 # gitlab_rails['repository_check_worker_cron'] = "20 * * * *"
 # gitlab_rails['admin_email_worker_cron'] = "0 0 * * 0"

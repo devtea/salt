@@ -17,6 +17,9 @@ base:
     - common.users
     - salt.minion
     - sshd
+  
+  "* not G@virtual:container":
+    - tuned
 
   # 
   # OS specific states
@@ -26,12 +29,12 @@ base:
     - common.centos
     - dnf
     - dnf.auto_update
-    - sshd.firewalld
 
   'G@os_family:Redhat not G@virtual:container':
     - match: compound
     - common.selinux
     - sshd.selinux
+    - sshd.firewalld
 
   'os_family:Arch':
     - match: grain
