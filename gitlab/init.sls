@@ -10,7 +10,7 @@ gitlab_repo:
         https://packages.gitlab.com/gitlab/gitlab-ce/gpgkey
         https://packages.gitlab.com/gitlab/gitlab-ce/gpgkey/gitlab-gitlab-ce-3D645A26AB9FBD22.pub.gpg
     - gpgcheck: 1
-    - repo_gpgssheck: 0
+    - repo_gpgcheck: 0
     - enabled: 1
     - metadata_expire: 300
     - sslverify: 1
