@@ -1,7 +1,7 @@
 {% from "salt/map.jinja" import salt with context %}
 
 salt_requisites:
-  pip.installed:
+  pkg.installed:
     - names:
       - gpgme
       - pinentry
