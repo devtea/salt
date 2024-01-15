@@ -3,14 +3,16 @@
 salt_requisites:
   pip.installed:
     - names:
-      - pygit2
+      - gpgme
+      - pinentry
+      - python3-gpg
 
 salt_master_config:
   file.managed:
     - name: /etc/salt/master
     - source: salt://salt/files/master
     - template: jinja
-    - context: 
+    - context:
         salt: {{ salt | tojson }}
 
 salt_master_service:
@@ -21,3 +23,10 @@ salt_master_service:
       - pip: salt_requisites
     - watch:
       - file: salt_master_config
+
+salt_gpg_dir:
+  file.directory:
+    - name: /etc/salt/gpgkeys
+    - user: salt
+    - group: salt
+    - mode: 700
