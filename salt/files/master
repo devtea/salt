@@ -215,7 +215,7 @@ user: salt
 #
 # If disabled, it is recommended to handle this event by listening for the
 # 'aes_key_rotate' event with the 'key' tag and acting appropriately.
-# ping_on_rotate: False
+ping_on_rotate: True
 
 # By default, the master deletes its cache of minion data when the key for that
 # minion is removed. To preserve the cache after key deletion, set
@@ -869,6 +869,9 @@ ext_pillar:
 # If this is `True` and the ciphertext could not be decrypted, then an error is
 # raised.
 #gpg_decrypt_must_succeed: False
+
+# Default renderer
+renderer: jinja|yaml|gpg
 
 # The ext_pillar_first option allows for external pillar sources to populate
 # before file system pillar. This allows for targeting file system pillar from
