@@ -19,6 +19,7 @@ base:
     - sshd
     - tailscale
   
+  # Containers don't need some things
   "* not G@virtual:container":
     - tuned
     - chrony

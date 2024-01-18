@@ -8,7 +8,7 @@ octo_sudoers:
   file.managed:
     - name: /etc/sudoers.d/octoprint
     - source: salt://octoprint/files/octoprint.sudoers
-    - mode: 600
+    - mode: "0600"
 
 octo_prereqs:
   pkg.installed:
