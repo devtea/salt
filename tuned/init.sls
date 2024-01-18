@@ -26,14 +26,14 @@ tuned_standard_conf:
 
 tuned_virt_conf:
   file.managed: 
-    - name: /etc/tuned/standard_virt/tuned.conf
-    - source: salt://tuned/files/standard_virt.conf
+    - name: /etc/tuned/standard-virt/tuned.conf
+    - source: salt://tuned/files/standard-virt.conf
     - makedirs: True
 
 tuned_rpi_conf:
   file.managed: 
-    - name: /etc/tuned/standard_rpi/tuned.conf
-    - source: salt://tuned/files/standard_rpi.conf
+    - name: /etc/tuned/standard-rpi/tuned.conf
+    - source: salt://tuned/files/standard-rpi.conf
     - makedirs: True
 
 tuned_active_profile:

@@ -1,11 +1,11 @@
 # Load defaults.yaml
 {% import_yaml "tuned/defaults.yaml" as defaults %}
 
-# Switch profile from standard_virt if running in a VM
+# Switch profile from standard-virt if running in a VM
 {% if grains["virtual"] == "physical" %}
     # if low swap, it's probably a raspberry pi or something we don't want swapping much
     {% if grains["swap"] < 2048 %}
-        {% do defaults.update({"profile": "standard_rpi"}) %}
+        {% do defaults.update({"profile": "standard-rpi"}) %}
     {% else %}
         {% do defaults.update({"profile": "standard"}) %}
     {% endif %}
