@@ -1,3 +1,5 @@
+{% from "tuned/map.jinja" import tuned with context %}
+
 tuned_pkg:
   pkg.installed: 
     - name: tuned
@@ -22,9 +24,21 @@ tuned_standard_conf:
     - source: salt://tuned/files/standard.conf
     - makedirs: True
 
+tuned_virt_conf:
+  file.managed: 
+    - name: /etc/tuned/standard_virt/tuned.conf
+    - source: salt://tuned/files/standard_virt.conf
+    - makedirs: True
+
+tuned_rpi_conf:
+  file.managed: 
+    - name: /etc/tuned/standard_rpi/tuned.conf
+    - source: salt://tuned/files/standard_rpi.conf
+    - makedirs: True
+
 tuned_active_profile:
   tuned.profile:
-    - name: standard
+    - name: {{ tuned.profile }}
     - require:
       - service: tuned_service_base
 

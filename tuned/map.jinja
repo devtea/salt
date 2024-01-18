@@ -1,0 +1,19 @@
+# Load defaults.yaml
+{% import_yaml "tuned/defaults.yaml" as defaults %}
+
+# Switch profile from standard_virt if running in a VM
+{% if grains["virtual"] == "physical" %}
+    # if low swap, it's probably a raspberry pi or something we don't want swapping much
+    {% if grains["swap"] < 2048 %}
+        {% do defaults.update({"profile": "standard_rpi"}) %}
+    {% else %}
+        {% do defaults.update({"profile": "standard"}) %}
+    {% endif %}
+{% endif %}
+
+# pull in grain override
+{% if grains["tuned"] is defined and "profile" in grains["tuned"] %}
+    {% do defaults.update({"profile": grains["tuned"]["profile"]}) %}
+{% endif %}
+
+{% set tuned = defaults.tuned %}
