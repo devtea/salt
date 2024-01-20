@@ -70,15 +70,17 @@ base:
     - match: grain
     - minecraft.dynmap_reverse_proxy
     - nginx
+    - nginx.certbot_minecraft
 
   "app:nginx":
     - match: grain
     - nginx
-    - nginx.certbot
 
   "app:octoprint":
     - match: grain
     - octoprint
+    - nginx
+    - nginx.octoprint
 
   "app:salt-master":
     - match: grain

@@ -1,3 +1,7 @@
+certbot_pkg:
+  pkg.installed:
+    - name: certbot
+
 certbot_nginx_config:
   file.managed:
     - name: /etc/nginx/nginx.conf
@@ -7,7 +11,7 @@ certbot_renewal:
   file.managed:
     - name: /etc/systemd/system/certbot_renewal.service
     - source: salt://nginx/files/certbot_renewal.service
-    - mode: 755
+    - mode: "0755"
 
 certbot_renewal_service:
   service.enabled:
@@ -24,7 +28,7 @@ certbot_renewal_timer:
   file.managed:
     - name: /etc/systemd/system/certbot_renewal.timer
     - source: salt://nginx/files/certbot_renewal.timer
-    - mode: 755
+    - mode: "0755"
 
 certbot_renewal_timer_enable:
   cmd.run:
