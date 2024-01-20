@@ -48,6 +48,7 @@ base:
   'os:Raspbian':
     - match: grain
     - common.raspian
+    - tailscale.repo_debian
 
   #
   # App grains
@@ -60,17 +61,17 @@ base:
     - match: grain
     - app.mailserver
 
-  "app:minecraft": 
+  "app:minecraft":
     - match: grain
     - java
     - minecraft
 
-  "app:minecraft_dynmap_reverse_proxy": 
+  "app:minecraft_dynmap_reverse_proxy":
     - match: grain
     - minecraft.dynmap_reverse_proxy
     - nginx
 
-  "app:nginx": 
+  "app:nginx":
     - match: grain
     - nginx
     - nginx.certbot
@@ -82,15 +83,6 @@ base:
   "app:salt-master":
     - match: grain
     - salt.master
-
-  # Tailscale vpn
-  "G@app:tailscale and G@os:Raspbian":
-    - match: compound
-    - tailscale.repo_debian
-    - tailscale
-  "G@app:tailscale and G@os_family:Arch":
-    - match: compound
-    - tailscale
 
   # Tailscale exit nodes
   "app:tailscale_exit_node":
