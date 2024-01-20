@@ -1,6 +1,6 @@
 #!/bin/bash
 
-virtualenv2 /home/octo/octoprint/venv
+virtualenv3 /home/octo/octoprint/venv
 source /home/octo/octoprint/venv/bin/activate
 pip2 install --upgrade pip
 pip2 install --upgrade setuptools

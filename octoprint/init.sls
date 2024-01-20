@@ -12,10 +12,10 @@ octo_sudoers:
 
 octo_prereqs:
   pkg.installed:
-    - pkgs: 
-      - python2
-      - python2-virtualenv
-      - python2-setuptools
+    - pkgs:
+      - python3
+      - python3-virtualenv
+      - python3-setuptools
       - gcc
       - libyaml
       - ffmpeg
@@ -25,13 +25,13 @@ octo_dir:
     - name: /home/octo/octoprint/
     - user: octo
     - group: octo
-    - require: 
+    - require:
       - user: octo_user
       - pkg: octo_prereqs
 
 # couldn't get this to work with salt's virtualenv module
 octo_install:
-  cmd.script: 
+  cmd.script:
     - name: salt://octoprint/files/setup.sh
     - creates: /home/octo/octoprint/venv/bin/octoprint
     - runas: octo
@@ -42,7 +42,7 @@ octo_service_file:
   file.managed:
     - name: /etc/systemd/system/octoprint.service
     - source: salt://octoprint/files/octoprint.service
-    - require: 
+    - require:
       - file: octo_dir
       - cmd: octo_install
 
