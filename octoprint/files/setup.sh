@@ -1,9 +1,9 @@
 #!/bin/bash
 
-virtualenv3 /home/octo/octoprint/venv
+python3 -m venv /home/octo/octoprint/venv
 source /home/octo/octoprint/venv/bin/activate
-pip2 install --upgrade pip
-pip2 install --upgrade setuptools
-pip2 install --upgrade distribute
-pip2 install OctoPrint
+python3 -m pip install --upgrade pip
+python3 -m pip install --upgrade setuptools
+python3 -m pip install --upgrade distribute
+python3 -m pip install OctoPrint
 deactivate
