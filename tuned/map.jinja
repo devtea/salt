@@ -4,7 +4,7 @@
 # Switch profile from standard-virt if running in a VM
 {% if grains["virtual"] == "physical" %}
     # if low swap, it's probably a raspberry pi or something we don't want swapping much
-    {% if grains["swap"] < 2048 %}
+    {% if grains["swap_total"] < 2048 %}
         {% do defaults.update({"profile": "standard-rpi"}) %}
     {% else %}
         {% do defaults.update({"profile": "standard"}) %}
