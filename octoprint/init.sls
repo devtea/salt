@@ -17,7 +17,7 @@ octo_prereqs:
       - python3-virtualenv
       - python3-setuptools
       - gcc
-      - libyaml
+      # - libyaml
       - ffmpeg
 
 octo_dir:
