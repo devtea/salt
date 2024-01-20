@@ -3,7 +3,7 @@ octo_user:
     - name: octo
     - groups:
       - uucp
-{% if grains['os'] == 'Debian' -%}
+{% if grains['os_family'] == 'Debian' -%}
       - dialout
 {%- endif %}
 
