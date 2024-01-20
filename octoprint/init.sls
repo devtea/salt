@@ -3,6 +3,9 @@ octo_user:
     - name: octo
     - groups:
       - uucp
+{% if grains['os'] == 'Debian' -%}
+      - dialout
+{%- endif %}
 
 octo_sudoers:
   file.managed:
