@@ -42,7 +42,7 @@ acme_sh_register:
       /home/{{ common.primary_user.username }}/acme.sh/acme.sh
       --register-account
       --server {{ acme.server }}
-      --eab-kid {{ acme.eab_key }}
+      --eab-kid {{ acme.eab_kid }}
       --eab-hmac-key {{ acme.eab_hmac_key }}
     - user: {{ common.primary_user.username }}
     - creates: /home/{{ common.primary_user.username }}/.acme.sh/ca
