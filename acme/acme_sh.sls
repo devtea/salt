@@ -63,6 +63,6 @@ acme_sh_issue_{{ domain }}:
       - CF_Account_ID: {{ acme.cf_account_id }}
     - creates: /home/{{ common.primary_user.username }}/.acme.sh/{{ domain }}_ecc/
     - require:
-      - cmd: acme_sh_register
+      - cmd: acme_sh_register_{{ domain }}
 
 {% endfor %}
