@@ -24,6 +24,7 @@ acme_sh_git:
     - require:
       - file: acme_sh_git_dir
 
+# "Installing" acme.sh sets up the binary and cron job for automatic renewal
 acme_sh_install:
   cmd.run:
     - name: /home/{{ common.primary_user.username }}/acme.sh/acme.sh --install
@@ -33,11 +34,9 @@ acme_sh_install:
     - onchanges:
       - git: acme_sh_git
 
-{% for domain in acme["domains"] %}
-
-# register zerossl EAB
-acme_sh_register_{{ domain }}:
-  cmd.run: 
+# register with the ACME server
+acme_sh_register:
+  cmd.run:
     - name: >
         /home/{{ common.primary_user.username }}/acme.sh/acme.sh
         --register-account
@@ -49,6 +48,8 @@ acme_sh_register_{{ domain }}:
     - require:
       - cmd: acme_sh_install
 
+{% for domain in acme["domains"] %}
+# Issue cert for {{ domain }}
 acme_sh_issue_{{ domain }}:
   cmd.run:
     - name: >
@@ -63,6 +64,6 @@ acme_sh_issue_{{ domain }}:
       - CF_Account_ID: {{ acme.cf_account_id }}
     - creates: /home/{{ common.primary_user.username }}/.acme.sh/{{ domain }}_ecc/
     - require:
-      - cmd: acme_sh_register_{{ domain }}
+      - cmd: acme_sh_register
 
 {% endfor %}
