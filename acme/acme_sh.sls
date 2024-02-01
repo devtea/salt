@@ -33,7 +33,7 @@ acme_sh_install:
     - onchanges:
       - git: acme_sh_git
 
-{% for domain in acme.domains %}
+{% for domain in acme["domains"] %}
 
 # register zerossl EAB
 acme_sh_register:
