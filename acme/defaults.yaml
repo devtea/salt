@@ -1,0 +1,4 @@
+acme:
+  tag: "3.0.7"
+  server: zerossl
+  # Cloudflare as the default provider

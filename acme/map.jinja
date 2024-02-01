@@ -1,0 +1,8 @@
+{% import_yaml "acme/defaults.yaml" as defaults %}
+
+{% set acme = salt["pillar.get"]("common", default=defaults["acme"], merge=True) %}
+
+# Pull domain names from grains for ACME request
+{% if grains["acme"] is defined and "domains" in grains["acme"] %}
+  {% do acme.update({"domains": grains["acme"]["domains"]}) %}
+{% endif%}

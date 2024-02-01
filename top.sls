@@ -53,6 +53,10 @@ base:
   #
   # App grains
   #
+  "app:acme":
+    - match: grain
+    - acme.acme_sh
+
   "app:gitlab":
     - match: grain
     - gitlab
