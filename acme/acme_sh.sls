@@ -38,12 +38,12 @@ acme_sh_install:
 # register zerossl EAB
 acme_sh_register:
   cmd.run: 
-    - name: > 
-      /home/{{ common.primary_user.username }}/acme.sh/acme.sh
-      --register-account
-      --server {{ acme.server }}
-      --eab-kid {{ acme.eab_kid }}
-      --eab-hmac-key {{ acme.eab_hmac_key }}
+    - name: >
+        /home/{{ common.primary_user.username }}/acme.sh/acme.sh
+        --register-account
+        --server {{ acme.server }}
+        --eab-kid {{ acme.eab_kid }}
+        --eab-hmac-key {{ acme.eab_hmac_key }}
     - user: {{ common.primary_user.username }}
     - creates: /home/{{ common.primary_user.username }}/.acme.sh/ca
     - require:
@@ -52,11 +52,11 @@ acme_sh_register:
 acme_sh_issue:
   cmd.run:
     - name: >
-      /home/{{ common.primary_user.username }}/acme.sh/acme.sh
-      --server {{ acme.server }}
-      --issue
-      -d {{ domain }}
-      --dns dns_cf
+        /home/{{ common.primary_user.username }}/acme.sh/acme.sh
+        --server {{ acme.server }}
+        --issue
+        -d {{ domain }}
+        --dns dns_cf
     - user: {{ common.primary_user.username }}
     - env:
       - CF_Token: {{ acme.cf_token }}
