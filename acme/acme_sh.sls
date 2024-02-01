@@ -15,7 +15,7 @@ acme_sh_git:
     - name: https://github.com/acmesh-official/acme.sh.git
     - target: "/home/{{ common.primary_user.username }}/acme.sh/"
     - rev: "{{ acme.tag }}"
-    - user: {{ common.primary_user.username }}
+    - runas: {{ common.primary_user.username }}
     - force_checkout: True
     - force_fetch: True
     - fetch_tags: True
@@ -28,8 +28,7 @@ acme_sh_git:
 acme_sh_install:
   cmd.run:
     - name: /home/{{ common.primary_user.username }}/acme.sh/acme.sh --install
-    - user: {{ common.primary_user.username }}
-    - cwd: "/home/{{ common.primary_user.username }}/acme.sh/"
+    - runas: {{ common.primary_user.username }}
     #- creates: /home/{{ common.primary_user.username }}/.acme.sh/account.conf
     - onchanges:
       - git: acme_sh_git
@@ -43,7 +42,7 @@ acme_sh_register:
         --server {{ acme.server }}
         --eab-kid {{ acme.eab_kid }}
         --eab-hmac-key {{ acme.eab_hmac_key }}
-    - user: {{ common.primary_user.username }}
+    - runas: {{ common.primary_user.username }}
     - creates: /home/{{ common.primary_user.username }}/.acme.sh/ca
     - require:
       - cmd: acme_sh_install
@@ -58,7 +57,7 @@ acme_sh_issue_{{ domain }}:
         --issue
         -d {{ domain }}
         --dns dns_cf
-    - user: {{ common.primary_user.username }}
+    - runas: {{ common.primary_user.username }}
     - env:
       - CF_Token: {{ acme.cf_token }}
       - CF_Account_ID: {{ acme.cf_account_id }}
