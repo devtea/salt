@@ -36,7 +36,7 @@ acme_sh_install:
 {% for domain in acme["domains"] %}
 
 # register zerossl EAB
-acme_sh_register:
+acme_sh_register_{{ domain }}:
   cmd.run: 
     - name: >
         /home/{{ common.primary_user.username }}/acme.sh/acme.sh
@@ -49,7 +49,7 @@ acme_sh_register:
     - require:
       - cmd: acme_sh_install
 
-acme_sh_issue:
+acme_sh_issue_{{ domain }}:
   cmd.run:
     - name: >
         /home/{{ common.primary_user.username }}/acme.sh/acme.sh
