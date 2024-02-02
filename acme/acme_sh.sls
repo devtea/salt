@@ -59,7 +59,7 @@ acme_sh_issue_{{ item["domain"] }}:
         --dns dns_cf
         {%- if "reloadcmd" in item.keys() %}
         --reloadcmd "{{ item["reloadcmd"] }}"
-        {% endif -%}
+        {%- endif %}
     - runas: {{ acme.user }}
     - env:
       - CF_Token: {{ acme.cf_token }}
