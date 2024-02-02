@@ -1,10 +1,19 @@
 {% import_yaml "acme/defaults.yaml" as defaults %}
+{% from "common/map.jinja" import common with context %}
 
 {% set acme = salt["pillar.get"]("acme", default=defaults["acme"], merge=True) %}
 
-# Pull domain names from grains for ACME request
-{% if grains["acme"] is defined and "domains" in grains["acme"] %}
-  {% do acme.update({"domains": grains["acme"]["domains"]}) %}
+{% if grains["acme"] is defined %}
+  # Pull domain names from grains for ACME request
+  {% if "domains" in grains["acme"] %}
+    {% do acme.update({"domains": grains["acme"]["domains"]}) %}
+  {% endif%}
+  # Set user if customized, else use common.primary_user.username as default
+  {% if "user" in grains["acme"] %}
+    {% do acme.update({"user": grains["acme"]["user"]}) %}
+  {% else %}
+    {% do acme.update({"user": common.primary_user.username}) %}
+  {% endif%}
 {% endif%}
 
 # may be empty

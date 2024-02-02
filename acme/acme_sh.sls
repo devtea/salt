@@ -1,21 +1,20 @@
 {% from "acme/map.jinja" import acme with context %}
-{% from "common/map.jinja" import common with context %}
 # Using acme.sh project for ACME client 
 # https://github.com/acmesh-official/acme.sh
 
 acme_sh_git_dir:
   file.directory:
-    - name: "/home/{{ common.primary_user.username }}/acme.sh"
-    - user: {{ common.primary_user.username }}
-    - group: {{ common.primary_user.username }}
+    - name: "/home/{{ acme.user }}/acme.sh"
+    - user: {{ acme.user }}
+    - group: {{ acme.user }}
     - mode: "0755"
 
 acme_sh_git:
   git.latest:
     - name: https://github.com/acmesh-official/acme.sh.git
-    - target: "/home/{{ common.primary_user.username }}/acme.sh/"
+    - target: "/home/{{ acme.user }}/acme.sh/"
     - rev: "{{ acme.tag }}"
-    - runas: {{ common.primary_user.username }}
+    - runas: {{ acme.user }}
     - force_checkout: True
     - force_fetch: True
     - fetch_tags: True
@@ -27,9 +26,10 @@ acme_sh_git:
 # "Installing" acme.sh sets up the binary and cron job for automatic renewal
 acme_sh_install:
   cmd.run:
-    - name: /home/{{ common.primary_user.username }}/acme.sh/acme.sh --install
-    - runas: {{ common.primary_user.username }}
-    #- creates: /home/{{ common.primary_user.username }}/.acme.sh/account.conf
+    - name: /home/{{ acme.user }}/acme.sh/acme.sh --install
+    - runas: {{ acme.user }}
+    - working_dir: /home/{{ acme.user }}/acme.sh
+    #- creates: /home/{{ acme.user }}/.acme.sh/account.conf
     - onchanges:
       - git: acme_sh_git
 
@@ -37,13 +37,13 @@ acme_sh_install:
 acme_sh_register:
   cmd.run:
     - name: >
-        /home/{{ common.primary_user.username }}/acme.sh/acme.sh
+        /home/{{ acme.user }}/acme.sh/acme.sh
         --register-account
         --server {{ acme.server }}
         --eab-kid {{ acme.eab_kid }}
         --eab-hmac-key {{ acme.eab_hmac_key }}
-    - runas: {{ common.primary_user.username }}
-    - creates: /home/{{ common.primary_user.username }}/.acme.sh/ca
+    - runas: {{ acme.user }}
+    - creates: /home/{{ acme.user }}/.acme.sh/ca
     - require:
       - cmd: acme_sh_install
 
@@ -52,7 +52,7 @@ acme_sh_register:
 acme_sh_issue_{{ item["domain"] }}:
   cmd.run:
     - name: >
-        /home/{{ common.primary_user.username }}/acme.sh/acme.sh
+        /home/{{ acme.user }}/acme.sh/acme.sh
         --server {{ acme.server }}
         --issue
         -d {{ item["domain"] }}
@@ -60,11 +60,11 @@ acme_sh_issue_{{ item["domain"] }}:
         {%- if "reloadcmd" in item.keys() %}
         --reloadcmd "{{ item["reloadcmd"] }}"
         {% endif -%}
-    - runas: {{ common.primary_user.username }}
+    - runas: {{ acme.user }}
     - env:
       - CF_Token: {{ acme.cf_token }}
       - CF_Account_ID: {{ acme.cf_account_id }}
-    - creates: /home/{{ common.primary_user.username }}/.acme.sh/{{ item["domain"] }}_ecc/
+    - creates: /home/{{ acme.user }}/.acme.sh/{{ item["domain"] }}_ecc/
     - require:
       - cmd: acme_sh_register
 
