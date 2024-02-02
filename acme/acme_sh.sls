@@ -57,7 +57,7 @@ acme_sh_issue_{{ item["domain"] }}:
         --issue
         -d {{ item["domain"] }}
         --dns dns_cf
-        {%- if reloadcmd in item.keys() %}
+        {%- if "reloadcmd" in item.keys() %}
         --reloadcmd "{{ item["reloadcmd"] }}"
         {% endif -%}
     - runas: {{ common.primary_user.username }}
