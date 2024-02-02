@@ -59,7 +59,7 @@ base:
 
   "app:acme_truenas":
     - match: grain
-    - acme_truenas
+    - acme.truenas
 
   "app:gitlab":
     - match: grain
