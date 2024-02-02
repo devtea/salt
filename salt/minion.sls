@@ -22,5 +22,5 @@ salt_minion_service_override:
 salt_minion_systemd_reload:
   cmd.run:
     - name: systemctl daemon-reload
-    - watch:
+    - onchanges:
       - file: salt_minion_service_override
