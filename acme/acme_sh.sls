@@ -19,7 +19,7 @@ acme_sh_git:
     - force_fetch: True
     - fetch_tags: True
     - sync_tags: True
-    - depth: 1
+    - depth: foo1
     - require:
       - file: acme_sh_git_dir
 
@@ -28,7 +28,7 @@ acme_sh_install:
   cmd.run:
     - name: /home/{{ acme.user }}/acme.sh/acme.sh --install
     - runas: {{ acme.user }}
-    - working_dir: /home/{{ acme.user }}/acme.sh
+    - working_dir: /home/{{ acme.user }}/acme.sh/
     #- creates: /home/{{ acme.user }}/.acme.sh/account.conf
     - onchanges:
       - git: acme_sh_git
