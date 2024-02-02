@@ -12,6 +12,7 @@ ACME_CERT_FILE="/home/{{ acme.user }}/.acme.sh/${GITLAB_DOMAIN}_ecc/${GITLAB_DOM
 ###############################################################################
 #                                  Checks                                     #
 ###############################################################################
+echo "Running checks..."
 
 # check that the certificate files exist
 if [ ! -f "${ACME_KEY_FILE}" ]; then
@@ -34,6 +35,7 @@ fi
 ###############################################################################
 
 # Key
+echo "Copying the SSL certificates to the GitLab configuration directory..."
 cp "${ACME_KEY_FILE}" "${GITLAB_CERT_DIR}/${GITLAB_DOMAIN}.key"
 # Gitlab has root so we don't need to open this up at all.
 chmod 600 "${GITLAB_CERT_DIR}/${GITLAB_DOMAIN}.key"
@@ -43,5 +45,6 @@ cp "${ACME_FULLCHAIN_FILE}" "${GITLAB_CERT_DIR}/${GITLAB_DOMAIN}.crt"
 chmod 644 "${GITLAB_CERT_DIR}/${GITLAB_DOMAIN}.crt"
 
 # Reload services
+echo "Reloading the GitLab web services..."
 sudo gitlab-ctl hup nginx
 sudo gitlab-ctl hup registry
