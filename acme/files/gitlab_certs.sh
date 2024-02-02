@@ -3,9 +3,9 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-ACME_KEY_FILE="/home/{{ acme.user }}/.acme.sh/{{ gitlab.url }}_ecc/{{ gitlab.url }}.key"
-ACME_FULLCHAIN_FILE="/home/{{ acme.user }}/.acme.sh/{{ gitlab.url }}_ecc/fullchain.cer"
-ACME_CERT_FILE="/home/{{ acme.user }}/.acme.sh/{{ gitlab.url }}_ecc/{{ gitlab.url }}.cer"
+ACME_KEY_FILE="/home/{{ acme.user }}/.acme.sh/{{ gitlab.domain }}_ecc/{{ gitlab.domain }}.key"
+ACME_FULLCHAIN_FILE="/home/{{ acme.user }}/.acme.sh/{{ gitlab.domain }}_ecc/fullchain.cer"
+ACME_CERT_FILE="/home/{{ acme.user }}/.acme.sh/{{ gitlab.domain }}_ecc/{{ gitlab.domain }}.cer"
 GITLAB_CERT_DIR="/etc/gitlab/ssl"
 
 ###############################################################################
@@ -33,13 +33,13 @@ fi
 ###############################################################################
 
 # Key
-cp "${ACME_KEY_FILE}" "${GITLAB_CERT_DIR}/${{ gitlab.url }}.key"
+cp "${ACME_KEY_FILE}" "${GITLAB_CERT_DIR}/${{ gitlab.domain }}.key"
 # Gitlab has root so we don't need to open this up at all.
-chmod 600 "${GITLAB_CERT_DIR}/${{ gitlab.url }}.key"
+chmod 600 "${GITLAB_CERT_DIR}/${{ gitlab.domain }}.key"
 
 # Certificate
-cp "${ACME_FULLCHAIN_FILE}" "${GITLAB_CERT_DIR}/${{ gitlab.url }}.crt"
-chmod 644 "${GITLAB_CERT_DIR}/${{ gitlab.url }}.crt"
+cp "${ACME_FULLCHAIN_FILE}" "${GITLAB_CERT_DIR}/${{ gitlab.domain }}.crt"
+chmod 644 "${GITLAB_CERT_DIR}/${{ gitlab.domain }}.crt"
 
 # Reload services
 sudo gitlab-ctl hup nginx
