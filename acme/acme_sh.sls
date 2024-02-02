@@ -19,7 +19,7 @@ acme_sh_git:
     - force_fetch: True
     - fetch_tags: True
     - sync_tags: True
-    - depth: foo1
+    - depth: 1
     - require:
       - file: acme_sh_git_dir
 
