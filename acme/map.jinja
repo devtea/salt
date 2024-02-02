@@ -6,3 +6,6 @@
 {% if grains["acme"] is defined and "domains" in grains["acme"] %}
   {% do acme.update({"domains": grains["acme"]["domains"]}) %}
 {% endif%}
+
+# may be empty
+{% set acme_truenas = salt["pillar.get"]("acme_truenas") %}

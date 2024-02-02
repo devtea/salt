@@ -1,4 +1,4 @@
-{% from "acme/map.jinja" import acme with context %}
+{% from "acme/map.jinja" import acme_truenas with context %}
 {% from "common/map.jinja" import common with context %}
 # Set up and configure the deploy-freenas script
 # https://github.com/danb35/deploy-freenas.git
@@ -20,5 +20,5 @@ deploy_freenas_config:
     - mode: "0640"
     - template: jinja
     - context:
-        acme: {{ acme }}
-        common: {{ common }ss
+        acme_truenas: {{ acme_truenas }}
+        common: {{ common }}

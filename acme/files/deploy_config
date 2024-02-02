@@ -4,18 +4,18 @@
 # Choose one of the following authentication methods, "api_key" or "password" (comment out the other one).
 # Auth via API keys is highly recommended, but is only available from TrueNAS (Core) 12.0 up.
 # You can generate a new API key in the web interface under "Settings" (upper right) > "API Keys"s
-api_key = {{ acme.truenas.api_key }}
+api_key = {{ acme_truenas.api_key }}
 # If you are on FreeNAS 11 or lower, set this to your FreeNAS root password
 # password = YourSuperSecurePassword#@#$*
 
 # Everything below here is optional
 
 # cert_fqdn specifies the FQDN used for your certificate.  Default is your system hostname
-cert_fqdn = {{ acme.truenas.fqdn }}
+cert_fqdn = {{ acme_truenas.fqdn }}
 
 # connect_host specifies the hostname the script should attempt to connect to, to deploy the cert.
 # Default is localhost (assuming the script is running on your FreeNAS box)
-connect_host = {{ acme.truenas.fqdn }}
+connect_host = {{ acme_truenas.fqdn }}
 
 # verify sets whether the script will attempt to verify the server's certificate with a HTTPS
 # connection.  Set to true if you're using a HTTPS connection to a remote host.  If connect_host
@@ -25,12 +25,12 @@ verify = true
 # privkey_path is the path to the certificate private key on your system.  Default
 # assumes you're using acme.sh:
 # /root/.acme.sh/cert_fqdn/cert_fqdn.key
-privkey_path = /home/{{ common.primary_user.username }}/.acme.sh/{{ acme.truenas.fqdn}}_ecc/{{ acme.truenas.fqdn }}.key
+privkey_path = /home/{{ common.primary_user.username }}/.acme.sh/{{ acme_truenas.fqdn}}_ecc/{{ acme_truenas.fqdn }}.key
 
 # fullchain_path is the path to the full chain (leaf cert + intermediate certs)
 # on your system.  Default assumes you're using acme.sh:
 # /root/.acme.sh/cert_fqdn/fullchain.cer
-fullchain_path = /home/{{ common.primary_user.username }}/.acme.sh/{{ acme.truenas.fqdn }}_ecc/fullchain.cer
+fullchain_path = /home/{{ common.primary_user.username }}/.acme.sh/{{ acme_truenas.fqdn }}_ecc/fullchain.cer
 
 # protocol sets the connection protocol, http or https.  Include '://' at the end.
 # Default is http
