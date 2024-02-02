@@ -19,6 +19,6 @@ gitlab_cert_dir:
   file.directory:
     - name: /etc/gitlab/ssl
     - user: {{ acme.user }}
-    - group: {{ acme.group }}
+    - group: {{ acme.user }}
     - mode: "0755"
 
