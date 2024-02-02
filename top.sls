@@ -65,6 +65,10 @@ base:
     - match: grain
     - gitlab
 
+  "g@app:gitlab and G@app:acme"
+    - match: compound
+    - acme.gitlab
+
   "app:mailserver":
     - match: grain
     - app.mailserver
