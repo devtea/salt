@@ -15,8 +15,9 @@ salt_minion_service:
 
 salt_minion_service_override:
   file.managed:
-    - name: /etc/systemd/system/salt-minion.service
+    - name: /etc/systemd/system/salt-minion.service.d/override.conf
     - source: salt://salt/files/salt-minion.service
+    - makedirs: true
 
 salt_minion_systemd_reload:
   cmd.run:
