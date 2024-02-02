@@ -3,7 +3,7 @@
 [deploy]
 # Choose one of the following authentication methods, "api_key" or "password" (comment out the other one).
 # Auth via API keys is highly recommended, but is only available from TrueNAS (Core) 12.0 up.
-# You can generate a new API key in the web interface under "Settings" (upper right) > "API Keys"s
+# You can generate a new API key in the web interface under "Settings" (upper right) > "API Keys".
 api_key = {{ acme_truenas.api_key }}
 # If you are on FreeNAS 11 or lower, set this to your FreeNAS root password
 # password = YourSuperSecurePassword#@#$*
@@ -52,10 +52,10 @@ ui_certificate_enabled = true
 # set webdav_enabled to true if you have the WEBDAV service enabled on your FreeNAS. Default is false.
 # webdav_enabled = true
 
-# set apps_enabled to true if you want to update your TrueNAS SCALE chart applications to use the newcertificate. Default is false.
+# set apps_enabled to true if you want to update your TrueNAS SCALE chart applications to use the new certificate. Default is false.
 # apps_enabled = true
 
-# only update TrueNAS SCALE chart applications where the san of the current and the new cert matches.Default is false.
+# only update TrueNAS SCALE chart applications where the san of the current and the new cert matches. Default is false.
 #apps_only_matching_san = true
 
 # Certificates will be given a name with a timestamp, by default it will be
