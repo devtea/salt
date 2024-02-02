@@ -16,9 +16,11 @@ common_packages:
       - rsync
       - strace
       - sudo
+      - tar
       - tig
       - tmux
       - traceroute
+      - tree
       - tcpdump
       - wget
       - zsh
