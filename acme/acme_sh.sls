@@ -47,21 +47,24 @@ acme_sh_register:
     - require:
       - cmd: acme_sh_install
 
-{% for domain in acme["domains"] %}
-# Issue cert for {{ domain }}
-acme_sh_issue_{{ domain }}:
+{% for item in acme["domains"] %}
+# Issue cert for {{ item["domain"] }}
+acme_sh_issue_{{ item["domain"] }}:
   cmd.run:
     - name: >
         /home/{{ common.primary_user.username }}/acme.sh/acme.sh
         --server {{ acme.server }}
         --issue
-        -d {{ domain }}
+        -d {{ item["domain"] }}
         --dns dns_cf
+        {%- if reloadcmd in item.keys() %}
+        --reloadcmd "{{ item["reloadcmd"] }}"
+        {% endif -%}
     - runas: {{ common.primary_user.username }}
     - env:
       - CF_Token: {{ acme.cf_token }}
       - CF_Account_ID: {{ acme.cf_account_id }}
-    - creates: /home/{{ common.primary_user.username }}/.acme.sh/{{ domain }}_ecc/
+    - creates: /home/{{ common.primary_user.username }}/.acme.sh/{{ item["domain"] }}_ecc/
     - require:
       - cmd: acme_sh_register
 
