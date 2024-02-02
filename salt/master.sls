@@ -29,4 +29,7 @@ salt_gpg_dir:
     - name: /etc/salt/gpgkeys
     - user: salt
     - group: salt
-    - mode: 700
+    - recurse:
+      - user
+      - group
+    - mode: "0700"
