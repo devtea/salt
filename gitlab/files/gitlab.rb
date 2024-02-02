@@ -1633,7 +1633,7 @@ gitlab_rails['pipeline_schedule_worker_cron'] = "*/5 * * * *"
 
 # nginx['enable'] = true
 # nginx['client_max_body_size'] = '250m'
-# nginx['redirect_http_to_https'] = false
+nginx['redirect_http_to_https'] = true
 # nginx['redirect_http_to_https_port'] = 80
 
 ##! Most root CA's are included by default
@@ -2736,7 +2736,8 @@ gitlab_rails['pipeline_schedule_worker_cron'] = "*/5 * * * *"
 ################################################################################
 # Let's Encrypt integration
 ################################################################################
-# letsencrypt['enable'] = nil
+# We're managing our own certs a different way
+letsencrypt['enable'] = false
 # letsencrypt['contact_emails'] = [] # This should be an array of email addresses to add as contacts
 # letsencrypt['group'] = 'root'
 # letsencrypt['key_size'] = 2048
