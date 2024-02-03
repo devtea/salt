@@ -10,3 +10,5 @@ nginx_octoprint_conf:
     - template: jinja
     - context:
         octoprint: {{ octoprint | tojson }}
+    - watch_in:
+      - service: nginx_service

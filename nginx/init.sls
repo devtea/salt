@@ -14,6 +14,7 @@ nginx_service:
   service.running:
     - name: nginx
     - enable: true
+    - reload: true
     - require:
       - pkg: nginx_pkgs
       - file: nginx_disable_default
