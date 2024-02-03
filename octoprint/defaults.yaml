@@ -1,0 +1,2 @@
+octoprint:
+  cert_dir: /etc/octoprint/tls

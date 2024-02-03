@@ -56,7 +56,6 @@ base:
   "app:acme":
     - match: grain
     - acme.acme_sh
-
   "app:acme_truenas":
     - match: grain
     - acme.truenas
@@ -64,7 +63,6 @@ base:
   "app:gitlab":
     - match: grain
     - gitlab
-
   "G@app:gitlab and G@app:acme":
     - match: compound
     - acme.gitlab
@@ -93,6 +91,9 @@ base:
     - octoprint
     - nginx
     - nginx.octoprint
+  "G@app:octoprint and G@app:acme":
+    - match: compound
+    - acme.octoprint
 
   "app:salt-master":
     - match: grain

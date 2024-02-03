@@ -13,8 +13,8 @@
     {% do acme.update({"user": grains["acme"]["user"]}) %}
   {% else %}
     {% do acme.update({"user": common.primary_user.username}) %}
-  {% endif%}
-{% endif%}
+  {% endif %}
+{% endif %}
 
 # may be empty
 {% set acme_truenas = salt["pillar.get"]("acme_truenas") %}

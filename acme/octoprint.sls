@@ -1,25 +1,26 @@
 {% from "acme/map.jinja" import acme with context %}
-{% from "gitlab/map.jinja" import gitlab with context %}
+{% from "octoprint/map.jinja" import octoprint with context %}
 
-gitlab_cert_update_script:
+octoprint_cert_update_script:
   file.managed:
-    - name: /usr/local/bin/gitlab_certs.sh
-    - source: salt://acme/files/gitlab_certs.sh
+    - name: /usr/local/bin/octoprint_certs.sh
+    - source: salt://acme/files/octoprint_certs.sh
     - user: root
     - group: root
     - mode: "0755"
     - template: jinja
     - context:
         acme: {{ acme }}
-        gitlab: {{ gitlab }}
+        octoprint: {{ octoprint }}
     - require_in:
       - cmd: acme_sh_register
     - require:
-      - file: gitlab_cert_dir
+      - file: octoprint_cert_dir
 
-gitlab_cert_dir:
+octoprint_cert_dir:
   file.directory:
-    - name: /etc/gitlab/ssl
+    - name: {{ octoprint.cert_dir }}
+    - makedirs: True
     - user: {{ acme.user }}
     - group: {{ acme.user }}
     - mode: "0755"

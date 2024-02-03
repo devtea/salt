@@ -1,3 +1,5 @@
+{% from "octoprint/map.jinja" import octoprint with context %}
+
 nginx_octoprint_conf:
   file.managed:
     - name: /etc/nginx/conf.d/octoprint.conf
@@ -5,3 +7,6 @@ nginx_octoprint_conf:
     - user: root
     - group: root
     - mode: "0644"
+    - template: jinja
+    - context:
+        octoprint: {{ octoprint | tojson }}

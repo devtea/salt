@@ -1,3 +1,5 @@
+{% from "octoprint/map.jinja" import octoprint with context %}
+
 octo_user:
   user.present:
     - name: octo

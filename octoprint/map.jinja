@@ -1,0 +1,3 @@
+{% import_yaml "octoprint/defaults.yaml" as defaults %}
+
+{% set octoprint = salt["pillar.get"]("octoprint", default=defaults["octoprint"], merge=True ) %}
