@@ -7,7 +7,7 @@ nginx_pkgs:
 nginx_disable_default:
   file.absent:
     - name: /etc/nginx/sites-enabled/default
-    - require: 
+    - require:
       - pkg: nginx_pkgs
 
 nginx_service:
