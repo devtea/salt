@@ -109,3 +109,7 @@ base:
   # Tilt pi devices (using tilt-pitch)
   "tilt*":
     - tilt
+
+  "G@app:pihole and G@app:appliance":
+    - match: compound
+    - salt.minion
