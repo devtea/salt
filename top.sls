@@ -10,9 +10,10 @@ base:
     - match: grain
     - salt.auto_highstate
   #
-  # Common items
+  # Common items unless app:appliance is set
   #
-  "*":
+  "* not G@app:appliance":
+    - match: compound
     - common
     - common.users
     - salt.minion
@@ -20,7 +21,8 @@ base:
     - tailscale
   
   # Containers don't need some things
-  "* not G@virtual:container":
+  "* not G@virtual:container not G@app:appliance":
+    - match: compound
     - tuned
     - chrony
 
@@ -45,8 +47,8 @@ base:
     - pacman
     - common.arch
 
-  'os:Raspbian':
-    - match: grain
+  '(G@os:Raspbian or G@os:Debian) not G@app:appliance':
+    - match: compound
     - common.raspian
     - tailscale.repo_debian
 
