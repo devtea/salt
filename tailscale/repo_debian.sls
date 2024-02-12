@@ -9,3 +9,5 @@ tailscale_repo:
     - key_url: "https://pkgs.tailscale.com/stable/raspbian/buster.gpg"
     - gpgcheck: 1
     - file: /etc/apt/sources.list.d/tailscale.list
+    - require_in:
+      - pkg: tailscale_pkg

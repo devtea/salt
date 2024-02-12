@@ -1,14 +1,12 @@
 tailscale_pkg:
   pkg.installed:
     - name: tailscale
-    - require: 
-      - pkgrepo: tailscale_repo
 
 tailscale_service:
   service.running:
     - name: tailscaled
     - enable: True
-    - require: 
+    - require:
       - pkg: tailscale_pkg
 
 # if the tailscale:authed grain is not set, then we need to auth
@@ -17,13 +15,13 @@ tailscale_auth:
   cmd.run:
     - name: tailscale up --authkey {{ pillar['common']['tailscale']['key'] }}
     - unless: tailscale status
-    - require: 
+    - require:
       - service: tailscale_service
 
 tailscale_authed_grain:
   grains.present:
     - name: tailscale:authed
     - value: True
-    - require: 
+    - require:
       - cmd: tailscale_auth
 {% endif %}
