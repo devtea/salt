@@ -1,6 +1,14 @@
 #!/bin/bash
 # This script is used to clean the template for deployment
 
+# This script must run as root
+echo "Checkin' for root"
+if [[ $EUID -ne 0 ]]; then
+echo "Relaunching as root"
+sudo "$0" "$@"
+exit $?
+fi
+
 # Bash strict mode
 set -euo pipefail
 IFS=$'\n\t'
