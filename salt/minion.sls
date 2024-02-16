@@ -7,9 +7,6 @@ salt_minion_service:
   service.running:
     - name: salt-minion
     - enable: true
-    - watch:
-      - file: salt_minion_config
-      - file: salt_minion_service_override
     - require:
       - cmd: salt_minion_systemd_reload
 
@@ -24,3 +21,14 @@ salt_minion_systemd_reload:
     - name: systemctl daemon-reload
     - onchanges:
       - file: salt_minion_service_override
+
+salt_minion_restart:
+  cmd.run:
+    - name: salt-call --local service.restart salt-minion
+    - bg: true
+    - require: 
+      - cmd: salt_minion_systemd_reload
+    - onchanges:
+      - file: salt_minion_config
+      - file: salt_minion_service_override
+   
