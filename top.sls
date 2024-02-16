@@ -21,7 +21,7 @@ base:
     - tailscale
   
   # Tuned on supported OS's, not containers/appliances
-  "(G@os_family:RedHat or G@os_family:Debian) not G@os: G@virtual:container not G@app:appliance":
+  "(G@os_family:RedHat or G@os_family:Debian) not G@virtual:container not G@app:appliance":
     - match: compound
     - tuned
 
