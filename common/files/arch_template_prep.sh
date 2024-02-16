@@ -32,6 +32,9 @@ systemctl enable salt-minion
 # Clear salt minion cache
 salt-call saltutil.clear_cache
 
+# Make sure tailscale grain indicates it's not authed
+salt-call grains.set tailscale:authed false
+
 # Clean up salt minion key
 rm -f /etc/salt/pki/minion
 
