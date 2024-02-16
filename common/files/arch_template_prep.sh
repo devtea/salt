@@ -35,6 +35,9 @@ salt-call saltutil.clear_cache
 # Make sure tailscale grain indicates it's not authed
 salt-call grains.set tailscale:authed false
 
+# Remind the user to remove the node from tailscale
+echo "On the tailscale admin console, remove the node from the network."
+
 # Clean up salt minion key
 rm -f /etc/salt/pki/minion
 
