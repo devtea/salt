@@ -2,14 +2,18 @@ pacman_contrib_scripts:
   pkg.installed:
     - name: pacman-contrib
 
-pacman_cleanup_hook_install:
+pacman_find_sh:
   file.managed:
-    - name: /etc/pacman.d/hooks/cache_cleanup_install.hook
-    - source: salt://pacman/files/cache_cleanup_install.hook
-    - makedirs: True
+    - name: /usr/local/bin/find_pacnew.sh
+    - source: salt://pacman/files/find_pacnew.sh
+    - user: root
+    - group: root
+    - mode: "0744"
 
-pacman_cleanup_hook_uninstall:
-  file.managed:
-    - name: /etc/pacman.d/hooks/cache_cleanup_uninstall.hook
-    - source: salt://pacman/files/cache_cleanup_uninstall.hook
-    - makedirs: True
+pacman_hooks:
+  file.recurse:
+    - name: /etc/pacman.d/hooks/
+    - source: salt://pacman/files/hooks/
+    - clean: False
+    - require:
+      - file: pacman_find_sh

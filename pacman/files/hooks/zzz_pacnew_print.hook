@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Upgrade
+Operation = Install
+Type = Package
+Target = *
+
+[Action]
+Description = Print path to any pacnew files
+When = PostTransaction
+Exec = /usr/local/sbin/find_pacnew.sh

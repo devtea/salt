@@ -1,0 +1,11 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Type = Package
+Target = *
+
+[Action]
+Description = Take a backup of the pacman database before transactions
+When = PreTransaction
+Exec = /usr/bin/tar -cjf "/var/lib/pacman/pacman_database_backup_$(date +%F_%H:%M:%S).tar.bz2" /var/lib/pacman/local
