@@ -20,3 +20,6 @@ arch_template_prep_script:
   file.managed:
     - name: /usr/local/sbin/arch_template_prep.sh
     - source: salt://common/files/arch_template_prep.sh
+    - user: root
+    - group: root
+    - mode: '0755'
