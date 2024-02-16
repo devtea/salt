@@ -7,7 +7,16 @@ arch_packages:
       - neovim
       - {{ common.packages.python_neovim }}
 
-alarm_cleanup:
+# Remove the well known default users
+{% for user in ['alarm', 'pi'] %}
+{{ user }}_cleanup:
   user.absent:
-    - name: alarm
-    - purge: true
+    - name: {{ user }}
+    - purge: True
+{% endfor %}
+
+# template prep script
+arch_template_prep_script:
+  file.managed:
+    - name: /usr/local/sbin/arch_template_prep.sh
+    - source: salt://common/files/arch_template_prep.sh
