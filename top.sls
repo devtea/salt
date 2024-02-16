@@ -116,4 +116,6 @@ base:
 
   "G@app:pihole and G@app:appliance":
     - match: compound
+    - common.users
     - salt.minion
+    - sshd
