@@ -30,16 +30,18 @@ systemctl stop salt-minion
 systemctl enable salt-minion
 
 # Clear salt minion cache
-salt-call saltutil.clear_cache
+salt-call saltutil.clear_cache \
+  || echo "Unable to clear salt cache"
 
 # Make sure tailscale grain indicates it's not authed
-salt-call grains.set tailscale:authed false
+salt-call grains.set tailscale:authed false \
+  || echo "Unable to set tailscale:authed grain"
 
 # Remind the user to remove the node from tailscale
 echo "On the tailscale admin console, remove the node from the network."
 
-# Clean up salt minion key
-rm -f /etc/salt/pki/minion
+# Clean up salt minion keys
+rm -f /etc/salt/pki/minion/*
 
 # clean up the salt minion id
 rm -f /etc/salt/minion_id
@@ -61,3 +63,6 @@ rm -rf /tmp/*
 find /var/log -type f -exec truncate --size 0 {} \;
 truncate -s 0 /var/log/salt/minion
 truncate -s 0 /var/log/{btmp,lastlog,pacman.log,wtmp}
+
+# Shutdown after a warning
+shutdown -h 1
