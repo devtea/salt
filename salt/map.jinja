@@ -1,2 +1,10 @@
+{% import_yaml "salt/defaults.yaml" as defaults %}
 # grab settings from pillar
-{% set salt = salt["pillar.get"]("salt", default={}, merge=True) %}
+{% set salt_conf = salt["pillar.get"]("salt_conf", default=defaults.salt_conf, merge=True) %}
+
+# Disable the service if the system has less than ~512MB of RAM or only one cpu
+# This will typically be the case for small embedded devices such as the 
+# Raspberry Pi Zero
+{% if grains["mem_total"] < 1024 or grains["num_cpus"] <= 1 %}
+    {% do salt_conf.update({"service_enable": False}) %}
+{% endif %}

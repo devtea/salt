@@ -1,3 +1,5 @@
+{% from "salt/map.jinja" import salt_conf with context %}
+
 salt_minion_config:
   file.managed:
     - name: /etc/salt/minion
@@ -6,7 +8,7 @@ salt_minion_config:
 salt_minion_service:
   service.running:
     - name: salt-minion
-    - enable: true
+    - enable: {{ salt_conf.service_enable }}
     - require:
       - cmd: salt_minion_systemd_reload
 

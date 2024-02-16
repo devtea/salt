@@ -1,0 +1,2 @@
+salt_conf:
+  service_enable: True

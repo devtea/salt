@@ -1,4 +1,4 @@
-{% from "salt/map.jinja" import salt with context %}
+{% from "salt/map.jinja" import salt_conf with context %}
 
 salt_requisites:
   pkg.installed:
@@ -13,7 +13,7 @@ salt_master_config:
     - source: salt://salt/files/master
     - template: jinja
     - context:
-        salt: {{ salt | tojson }}
+        salt: {{ salt_conf | tojson }}
 
 salt_master_service:
   service.running:
