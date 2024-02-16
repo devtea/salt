@@ -4,7 +4,7 @@ pacman_contrib_scripts:
 
 pacman_find_sh:
   file.managed:
-    - name: /usr/local/bin/find_pacnew.sh
+    - name: /usr/local/sbin/find_pacnew.sh
     - source: salt://pacman/files/find_pacnew.sh
     - user: root
     - group: root
