@@ -5,12 +5,20 @@ salt_minion_config:
     - name: /etc/salt/minion
     - source: salt://salt/files/minion
 
+{% if salt_conf.service_enable %}
 salt_minion_service:
   service.running:
     - name: salt-minion
-    - enable: {{ salt_conf.service_enable }}
+    - enable: True
     - require:
       - cmd: salt_minion_systemd_reload
+{% else %}
+salt_minion_service:
+  service.dead:
+    - name: salt-minion
+    - enable: False
+    - require:
+{% endif %}
 
 salt_minion_service_override:
   file.managed:
