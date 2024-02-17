@@ -111,7 +111,8 @@ base:
     - tailscale.exit_node
 
   # Tilt pi devices (using tilt-pitch)
-  "tilt*":
+  "app:tilt":
+    - match: grain
     - tilt
 
   "G@app:pihole and G@app:appliance":
