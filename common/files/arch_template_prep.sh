@@ -27,7 +27,7 @@ journalctl --rotate --vacuum-time=1s
 
 # Stop salt minion, but ensure it's enabled for next boot
 systemctl stop salt-minion
-systemctl enable salt-minion
+systemctl disable salt-minion
 
 # Clear salt minion cache
 salt-call saltutil.clear_cache \
