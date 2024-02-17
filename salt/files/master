@@ -806,7 +806,7 @@ fileserver_backend:
 gitfs_remotes:
   - "{{ salt.master.states_git }}":
     - base: main
-    - ssl_verify: False
+    - ssl_verify: True
 
 # The gitfs_ssl_verify option specifies whether to ignore ssl certificate
 # errors when contacting the gitfs backend. You might want to set this to
@@ -844,7 +844,7 @@ ext_pillar:
   - git:
     - main {{ salt.master.pillar_git }}:
       - env: base
-      - ssl_verify: False
+      - ssl_verify: True
 # A list of paths to be recursively decrypted during pillar compilation.
 # Entries in this list can be formatted either as a simple string, or as a
 # key/value pair, with the key being the pillar location, and the value being
