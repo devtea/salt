@@ -1,0 +1,8 @@
+{% import_yaml "containerd/defaults.yaml" as defaults %}
+
+{% set containerd = salt["pillar.get"]("containerd", default=defaults.containerd, merge=true) %}
+
+# Get the list of "enabled" services from host grains
+{% if grains["containerd"] is defined and "services" in grains["containerd"]%}
+    {% do containerd.update({"services": grains["containerd"]["services"]}) %}
+{% endif %}

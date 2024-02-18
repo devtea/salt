@@ -66,6 +66,10 @@ base:
     - match: grain
     - acme.truenas
 
+  "app:containerd":
+    - match: grain
+    - containerd
+
   "app:gitlab":
     - match: grain
     - gitlab

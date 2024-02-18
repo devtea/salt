@@ -1,0 +1,23 @@
+---
+services:
+  mealie:
+    image: ghcr.io/mealie-recipes/mealie:v1.0.0 
+    container_name: mealie
+    ports:
+      - "{{ containerd.services.mealie.port }}:9000"
+    deploy:
+      resources:
+        limits:
+          memory: 1000M #
+    volumes:
+      - "{{ containerd.container_root }}/{{ service }}/data:/app/data/"
+    environment:
+      # Set Backend ENV Variables Here
+      - ALLOW_SIGNUP=true
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Chicago
+      - MAX_WORKERS=1
+      - WEB_CONCURRENCY=1
+      - BASE_URL={{ containerd.services.mealie.base_url }}
+    restart: unless-stopped
