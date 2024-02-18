@@ -88,7 +88,7 @@ containerd_rootless_setup:
         XDG_RUNTIME_DIR: /run/user/{{ common.primary_user.uid }}
     - require:
       - file: {{ service }}_data_dir
-    - unless: nerdctl ps | grep -E " Up .*{{ service }}$"
-    #- onchanges:
-      #- file: {{ service }}
+    #- unless: nerdctl ps | grep -E " Up .*{{ service }}$"
+    - onchanges:
+      - file: {{ service }}
 {% endfor %}
