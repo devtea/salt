@@ -6,5 +6,5 @@ services:
     volumes:
       - "{{ containerd.container_root }}/{{ service }}/data:/config"
     ports:
-      - "{{ containerd.services.uptime-kuma.port }}:3001"
+      - "{{ containerd.services_conf.uptime-kuma.port }}:3001"
     restart: unless-stopped
