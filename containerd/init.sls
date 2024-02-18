@@ -11,11 +11,11 @@ containerd_boot_loader_override:
 containerd_pkg:
   pkg.installed:
     - pkgs:
-    - containerd
-    - nerdctl
-    - rootlesskit
-    - slirp4netns
-    - cni-plugins
+      - containerd
+      - nerdctl
+      - rootlesskit
+      - slirp4netns
+      - cni-plugins
 
 containerd_root:
   file.directory:
