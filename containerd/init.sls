@@ -68,7 +68,7 @@ containerd_rootless_setup:
         containerd: {{ containerd | tojson }}
         service: {{ service }}
     - require:
-    - file: containerd_root
+      - file: containerd_root
 
 {{ service }}_data_dir:
   file.directory:
