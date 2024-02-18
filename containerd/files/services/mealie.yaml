@@ -19,5 +19,5 @@ services:
       - TZ=America/Chicago
       - MAX_WORKERS=1
       - WEB_CONCURRENCY=1
-      - BASE_URL={{ containerd.services_conf.mealie.base_url }}
+      - BASE_URL={{ containerd.services_conf.mealie.url }}
     restart: unless-stopped
