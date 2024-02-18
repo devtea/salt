@@ -4,7 +4,7 @@ services:
     image: ghcr.io/mealie-recipes/mealie:v1.0.0 
     container_name: mealie
     ports:
-      - "{{ containerd.services.mealie.port }}:9000"
+      - "{{ containerd.services_conf.mealie.port }}:9000"
     deploy:
       resources:
         limits:
