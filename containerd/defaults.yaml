@@ -1,2 +1,3 @@
 containerd:
   container_root: /srv/containers
+  cert_dir: /etc/containerd_tls/

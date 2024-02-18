@@ -69,6 +69,10 @@ base:
   "app:containerd":
     - match: grain
     - containerd
+    - nginx.containerd
+  "G@app:containerd and G@app:acme":
+    - match: compound
+    - acme.containerd
 
   "app:gitlab":
     - match: grain
