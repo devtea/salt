@@ -76,6 +76,7 @@ containerd_rootless_setup:
     - user: {{ common.primary_user.username }}
     - group: {{ common.primary_user.username }}
     - mode: "0750"
+    - replace: False 
     - require:
       - file: containerd_root
 
