@@ -2,7 +2,7 @@
 {% from "containerd/map.jinja" import containerd with context %}
 
 {% for service in containerd.services %}
-containerd_{{ service}}_cert_update_script:
+containerd_{{ service }}_cert_update_script:
   file.managed:
     - name: /usr/local/bin/containerd_{{ service }}_certs.sh
     - source: salt://acme/files/containerd_certs.sh
@@ -12,8 +12,8 @@ containerd_{{ service}}_cert_update_script:
     - template: jinja
     - context:
         acme: {{ acme | tojson }}
-        containerd: {{ containerd | tojson}}
-        service: {{ service}}
+        containerd: {{ containerd | tojson }}
+        service: {{ service }}
     - require_in:
       - cmd: acme_sh_register
     - require:
@@ -22,9 +22,9 @@ containerd_{{ service}}_cert_update_script:
 # Set the domain grains needed for acme. will sometimes require a second 
 # highstate, but w/e
 containerd_acme_{{ service }}_grain:
-  grains.list_present:
+  grains.appned:
     - name: acme:domains
-    - value: 
+    - value:
       - domain: "{{ containerd["services_conf"][service]["domain"] }}"
         reloadcmd: /usr/local/bin/containerd_{{ service }}_certs.sh
 {% endfor %}
