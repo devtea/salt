@@ -50,6 +50,7 @@ base:
     - match: grain
     - pacman
     - common.arch
+    - systemd-resolved
 
   '(G@os:Raspbian or G@os:Debian) not G@app:appliance':
     - match: compound
