@@ -18,13 +18,17 @@ containerd_{{ service }}_cert_update_script:
       - cmd: acme_sh_register
     - require:
       - file: containerd_cert_dir
+{% endfor %}
 
 # Set the domain grains needed for acme. will sometimes require a second 
 # highstate, but w/e
-containerd_acme_{{ service }}_grain:
+# Wrapping this whole stanza in a for loop doesn't work, since salt seems
+# to not like deep inspection of the grains when setting dicts.
+containerd_acme_grain:
   grains.list_present:
     - name: acme:domains
     - value:
+{% for service in containerd.services %}
       - domain: "{{ containerd["services_conf"][service]["domain"] }}"
         reloadcmd: /usr/local/bin/containerd_{{ service }}_certs.sh
     - reload_grains: True
