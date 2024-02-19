@@ -28,10 +28,10 @@ containerd_acme_grain:
   grains.list_present:
     - name: acme:domains
     - value:
-{% for service in containerd.services %}
+{%- for service in containerd.services %}
       - domain: "{{ containerd["services_conf"][service]["domain"] }}"
         reloadcmd: /usr/local/bin/containerd_{{ service }}_certs.sh
-{% endfor %}
+{%- endfor %}
 
 containerd_cert_dir:
   file.directory:
