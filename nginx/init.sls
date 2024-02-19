@@ -14,12 +14,12 @@ nginx_conf:
   file.managed:
     - name: /etc/nginx/nginx.conf
     - source: salt://nginx/files/nginx.conf
+    - template: jinja
 
 nginx_conf.d:
   file.directory:
     - name: /etc/nginx/conf.d
     - mode: "0755"
-    - template: jinja
 
 nginx_service:
   service.running:
