@@ -31,7 +31,6 @@ containerd_acme_grain:
 {% for service in containerd.services %}
       - domain: "{{ containerd["services_conf"][service]["domain"] }}"
         reloadcmd: /usr/local/bin/containerd_{{ service }}_certs.sh
-    - reload_grains: True
 {% endfor %}
 
 containerd_cert_dir:
