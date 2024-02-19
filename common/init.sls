@@ -4,6 +4,7 @@ common_packages:
   pkg.installed:
     - names: 
       - {{ common.packages.bind_tools }}
+      - {{ common.packages.cron }}
       - git
       - htop
       - iotop

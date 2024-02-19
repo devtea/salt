@@ -4,6 +4,7 @@
 {% set packages = salt['grains.filter_by']({
     "Arch": {
         "bind_tools": "bind",
+        "cron": "cronie",
         "python": "python",
         "requests": "python-requests",
         "pyyaml": "python-pyaml",
@@ -12,6 +13,7 @@
     },
     "RedHat": {
         "bind_tools": "bind-utils",
+        "cron": "cronie-anacron",
         "python": "python3",
         "requests": "python3-requests",
         "pyyaml": "python3-pyyaml",
@@ -20,6 +22,7 @@
     },
     "Debian": {
         "bind_tools": "dnsutils",
+        "cron": "cron",
         "python": "python3",
         "requests": "python3-requests",
         "pyyaml": "python3-yaml",
