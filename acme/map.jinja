@@ -3,6 +3,9 @@
 
 {% set acme = salt["pillar.get"]("acme", default=defaults["acme"], merge=True) %}
 
+# Set default user
+{% do acme.update({"user": common.primary_user.username}) %}
+
 {% if grains["acme"] is defined %}
   # Pull domain names from grains for ACME request
   {% if "domains" in grains["acme"] %}
@@ -11,8 +14,6 @@
   # Set user if customized, else use common.primary_user.username as default
   {% if "user" in grains["acme"] %}
     {% do acme.update({"user": grains["acme"]["user"]}) %}
-  {% else %}
-    {% do acme.update({"user": common.primary_user.username}) %}
   {% endif %}
 {% endif %}
 
