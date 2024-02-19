@@ -29,6 +29,10 @@ base:
   "* not G@virtual:container not G@app:appliance":
     - match: compound
     - chrony
+  
+  "virtual:kvm":
+    - match: grain
+    - common.qemu_guests
 
   # 
   # OS specific states
