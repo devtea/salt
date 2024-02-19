@@ -14,5 +14,5 @@ services:
     volumes:
       - "{{ containerd.container_root }}/{{ service }}/data:/config"
     ports:
-      - "{{ containerd.services_conf.heimdall.port }}:80"
+      - "{{ containerd.services_conf.heimdall.port }}:443"
     restart: unless-stopped
