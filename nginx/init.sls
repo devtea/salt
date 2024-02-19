@@ -19,6 +19,7 @@ nginx_conf.d:
   file.directory:
     - name: /etc/nginx/conf.d
     - mode: "0755"
+    - template: jinja
 
 nginx_service:
   service.running:
