@@ -24,6 +24,8 @@ containerd_{{ service }}_cert_update_script:
 # highstate, but w/e
 # Wrapping this whole stanza in a for loop doesn't work, since salt seems
 # to not like deep inspection of the grains when setting dicts.
+#
+# ⚠️ Note: this appears to never get updated after it's first set...
 containerd_acme_grain:
   grains.list_present:
     - name: acme:domains
