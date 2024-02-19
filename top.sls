@@ -69,6 +69,7 @@ base:
   "app:containerd":
     - match: grain
     - containerd
+    - nginx
     - nginx.containerd
   "G@app:containerd and G@app:acme":
     - match: compound
