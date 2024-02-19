@@ -5,7 +5,7 @@
 nginx_containerd_{{ service }}_conf:
   file.managed:
     - name: /etc/nginx/conf.d/containerd.conf
-    - source: salt://nginx/files/containerd_{{ service }}.conf
+    - source: salt://nginx/files/containerd.conf
     - template: jinja
     - context:
         containerd: {{ containerd | tojson }}
