@@ -3,6 +3,10 @@ services:
   uptime-kuma:
     image: louislam/uptime-kuma:1
     container_name: uptime-kuma
+    deploy:
+      resources:
+        limits:
+          memory: 256M
     volumes:
       - "{{ containerd.container_root }}/{{ service }}/data:/app/data"
     ports:
