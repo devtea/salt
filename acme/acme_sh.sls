@@ -46,6 +46,7 @@ acme_sh_register:
     - require:
       - cmd: acme_sh_install
 
+{% if acme["domains"] | len > 0 %}
 {% for item in acme["domains"] %}
 # Issue cert for {{ item["domain"] }}
 acme_sh_issue_{{ item["domain"] }}:
@@ -68,3 +69,4 @@ acme_sh_issue_{{ item["domain"] }}:
       - cmd: acme_sh_register
 
 {% endfor %}
+{% endif %}
