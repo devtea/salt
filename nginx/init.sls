@@ -14,12 +14,13 @@ nginx_conf:
   file.managed:
     - name: /etc/nginx/nginx.conf
     - source: salt://nginx/files/nginx.conf
+    - make_dirs: True
 
 nginx_service:
   service.running:
     - name: nginx
-    - enable: true
-    - reload: true
+    - enable: True
+    - reload: True
     - require:
       - pkg: nginx_pkgs
       - file: nginx_disable_default
