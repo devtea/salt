@@ -23,5 +23,5 @@ nginx_service:
     - require:
       - pkg: nginx_pkgs
       - file: nginx_disable_default
-    watch:
+    - watch:
       - file: nginx_conf
