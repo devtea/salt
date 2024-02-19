@@ -22,11 +22,12 @@ containerd_{{ service }}_cert_update_script:
 # Set the domain grains needed for acme. will sometimes require a second 
 # highstate, but w/e
 containerd_acme_{{ service }}_grain:
-  grains.append:
+  grains.list_present:
     - name: acme:domains
     - value:
       - domain: "{{ containerd["services_conf"][service]["domain"] }}"
         reloadcmd: /usr/local/bin/containerd_{{ service }}_certs.sh
+    - reload_grains: True
 {% endfor %}
 
 containerd_cert_dir:
