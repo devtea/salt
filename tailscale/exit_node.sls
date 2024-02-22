@@ -31,7 +31,7 @@ tailscale_exit_extra_pkgs:
 
 tailscale_exit_transport_layer_offloads:
   file.managed:
-    - name: /etc/systemd/foo
+    - name: /etc/systemd/system/tailscale_udp_offload.service
     - source: salt://tailscale/files/tailscale_udp_offload.service
     - template: jinja
     - require:
