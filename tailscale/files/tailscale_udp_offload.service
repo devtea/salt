@@ -4,7 +4,7 @@ Requires=network.target
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/ethtool -K {{ salt["cmd.run"]("ip route show 0/0 | cut -f5 -d' ') }} rx-udp-gro-forwarding on rx-gro-list off
+ExecStart=/usr/bin/ethtool -K {{ salt["cmd.run"](ip route show 0/0 | cut -f5 -d' ') }} rx-udp-gro-forwarding on rx-gro-list off
 Type=oneshot
 
 [Install]
