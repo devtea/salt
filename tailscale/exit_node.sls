@@ -23,3 +23,31 @@ tailscale_exit_setup_state:
       - cmd: tailscale_exit_setup
     - onchanges: 
       - cmd: tailscale_exit_setup
+
+tailscale_exit_extra_pkgs:
+  pkg.installed:
+    - pkgs:
+      - ethtool
+
+tailscale_exit_transport_layer_offloads:
+  file.managed:
+    - name: /etc/systemd/foo
+    - source: salt://tailscale/files/tailscale_udp_offload.service
+    - template: jinja
+    - require:
+      - pkg: tailscale_exit_extra_pkgs
+
+tailscale_systemd_reload:
+  cmd.run:
+    - name: systemctl daemon-reload
+    - onchanges:
+      - file: tailscale_exit_transport_layer_offloads
+
+tailscale_exit_transport_layer_offloads_enable:
+  service.running:
+    - name: tailscale_udp_offload
+    - enable: True
+    - require:
+      - cmd: tailscale_systemd_reload
+    - watch:
+      - file: tailscale_exit_transport_layer_offloads
