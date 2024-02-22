@@ -8,12 +8,6 @@ sshd_config:
     - context:
         sshd: {{ sshd | tojson }}
 
-sshd_service:
-  service.running:
-    - name: sshd
-    - watch:
-      - file: sshd_config
-
 # Remove small diffie-hellman moduli
 sshd_scrub_moduli:
   cmd.run:
@@ -21,3 +15,10 @@ sshd_scrub_moduli:
         awk '$5 >= 3071' /etc/ssh/moduli > /etc/ssh/moduli.safe &&
         mv -f /etc/ssh/moduli.safe /etc/ssh/moduli 
     - onlyif: "[ $(awk '$5 >= 3071' /etc/ssh/moduli | wc -l | awk '{print $1}') -ge $(wc -l /etc/ssh/moduli | awk '{print $1}') ]"
+
+sshd_service:
+  service.running:
+    - name: sshd
+    - watch:
+      - file: sshd_config
+      - cmd: sshd_scrub_moduli
