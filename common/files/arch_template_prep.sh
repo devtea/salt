@@ -33,6 +33,12 @@ systemctl disable salt-minion
 salt-call saltutil.clear_cache \
   || echo "Unable to clear salt cache"
 
+# Stop tailscaled
+systemctl stop tailscaled
+
+# Remove tailscale state
+rm -f /var/lib/tailscale/tailscaled.state
+
 # Make sure tailscale grain indicates it's not authed
 salt-call grains.set tailscale:authed false \
   || echo "Unable to set tailscale:authed grain"
