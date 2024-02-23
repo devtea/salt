@@ -53,7 +53,7 @@ rm -f /etc/salt/pki/minion/*
 rm -f /etc/salt/minion_id
 
 # Remind user to clean up minion on the master
-echo -n "On the salt master, run `sudo salt-key -d <minion-id>`"
+echo -n 'On the salt master, run `sudo salt-key -d <minion-id>`'
 echo "to remove the minion from the master."
 
 # Clean up the machine ID
