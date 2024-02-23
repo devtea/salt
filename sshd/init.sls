@@ -8,6 +8,12 @@ sshd_config:
     - context:
         sshd: {{ sshd | tojson }}
 
+ssh_hardening_conf:
+  file.managed:
+    - name: /etc/ssh/sshd_config.d/sshd_hardening.conf
+    - source: salt://sshd/files/sshd_hardening.conf
+    - template: jinja
+
 # Remove small diffie-hellman moduli
 sshd_scrub_moduli:
   cmd.run:
