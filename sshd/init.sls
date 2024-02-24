@@ -12,6 +12,7 @@ ssh_hardening_conf:
   file.managed:
     - name: /etc/ssh/sshd_config.d/sshd_hardening.conf
     - source: salt://sshd/files/sshd_hardening.conf
+    - makedirs: True
     - template: jinja
 
 # Remove small diffie-hellman moduli
