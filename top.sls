@@ -79,7 +79,7 @@ base:
     - nginx.containerd
   "G@app:containerd and G@app:acme":
     - match: compound
-    - acme.containere2aHbud
+    - acme.container
 
   "app:gitlab":
     - match: grain
