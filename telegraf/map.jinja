@@ -1,0 +1,4 @@
+{% import_yaml "telegraf/defaults.yaml" as defaults %}
+
+# Pull in pillar overrides
+{% set telegraf = salt['pillar.get']('telegraf', default=defaults.telegraf, merge=True) %}

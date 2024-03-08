@@ -115,6 +115,12 @@ base:
     - match: compound
     - acme.octoprint
 
+  "G@app:pihole and G@app:appliance":
+    - match: compound
+    - common.users
+    - salt.minion
+    - sshd
+
   "app:salt-master":
     - match: grain
     - salt.master
@@ -129,8 +135,7 @@ base:
     - match: grain
     - tilt
 
-  "G@app:pihole and G@app:appliance":
-    - match: compound
-    - common.users
-    - salt.minion
-    - sshd
+  # Telegraf server monitoring
+  "app:telegraf":
+    - match: grain
+    - telegraf

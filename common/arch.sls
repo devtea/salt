@@ -23,3 +23,11 @@ arch_template_prep_script:
     - user: root
     - group: root
     - mode: '0755'
+
+# aur build directory
+aur_build_dir:
+  file.directory:
+    - name: /home/{{ common.primary_user.username }}/build/
+    - user: {{ common.primary_user.username }}
+    - group: {{ common.primary_user.group }}
+    - mode: '0755'
