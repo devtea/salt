@@ -1,4 +1,4 @@
-influx_gpg_key:
+influxdb_gpg_key:
   file.managed:
     - name: /root/influxdata-archive.key
     - source: https://repos.influxdata.com/influxdata-archive.key
@@ -7,13 +7,13 @@ influx_gpg_key:
     - group: root
     - mode: "0644"
 
-influx_gpg_trust:
+influxdb_gpg_trust:
   cmd.run:
     - name: "cat /root/influxdata-archive.key | gpg --dearmor | tee /etc/apt/trusted.gpg.d/influxdata-archive.gpg > /dev/null"
     - onchanges:
-      - file: influx_gpg_key
+      - file: influxdb_gpg_key
 
-influx_apt_repo:
+influxdb_apt_repo:
   file.managed:
     - name: /etc/apt/sources.list.d/influxdata.list
     - contents: "deb [signed-by=/etc/apt/trusted.gpg.d/influxdata-archive.gpg] https://repos.influxdata.com/debian stable main"
