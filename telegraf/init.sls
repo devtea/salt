@@ -74,3 +74,12 @@ telegraf_influxdb_output_conf:
         telegraf: {{ telegraf }}
     - require:
       - file: telegraf_conf_dir
+
+telegraf_servicet:
+  service.running:
+    - name: telegraf
+    - enable: True
+    - require:
+      - file: telegraf_conf
+      - file: telegraf_default_inputs_conf
+      - file: telegraf_influxdb_output_conf
