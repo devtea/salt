@@ -1,0 +1,21 @@
+---
+services:
+  {{ service }}:
+    image: influxdb:2.7.5
+    container_name: {{ service }}
+    deploy:
+      resources:
+        limits:
+          memory: 2048M
+    volumes:
+      - "{{ containerd.container_root }}/{{ service }}/data:/var/lib/influxdb2"
+      - "{{ containerd.container_root }}/{{ service}}/etc:/etc/influxdb2"
+    ports:
+      - "{{ containerd.services_conf.influxdb.port }}:8086"
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: {{ containerd.services_conf.influxdb.username }}
+      DOCKER_INFLUXDB_INIT_PASSWORD: {{ containerd.services_conf.influxdb.password }}
+      DOCKER_INFLUXDB_INIT_ORG: {{ containerd.services_conf.influxdb.org }}
+      DOCKER_INFLUXDB_INIT_BUCKET: {{ containerd.services_conf.influxdb.bucket }}
+    restart: unless-stopped
