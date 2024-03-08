@@ -9,6 +9,8 @@ telegraf_pkg:
     - name: telegraf
     - require: 
       - sls: telegraf.debian
+    - require_in:
+      - file: telegraf_conf
 
 {% elif grains["os_family"] == "RedHat" %}
 include: 
@@ -19,6 +21,8 @@ telegraf_pkg:
     - name: telegraf
     - require: 
       - sls: telegraf.redhat
+    - require_in:
+      - file: telegraf_conf
 
 {% elif grains["os_family"] == "Arch" %}
 include: 
@@ -44,8 +48,6 @@ telegraf_conf:
     - template: jinja
     - context:
         telegraf: {{ telegraf }}
-    - require:
-      - pkg: telegraf_pkg
 
 telegraf_default_inputs_conf:
   file.managed:
