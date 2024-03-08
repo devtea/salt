@@ -75,7 +75,7 @@ telegraf_influxdb_output_conf:
     - require:
       - file: telegraf_conf_dir
 
-telegraf_servicet:
+telegraf_service:
   service.running:
     - name: telegraf
     - enable: True
