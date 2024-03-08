@@ -19,6 +19,7 @@ base:
     - salt.minion
     - sshd
     - tailscale
+    - telegraf
   
   # Tuned on supported OS's, not containers/appliances
   "(G@os_family:RedHat or G@os_family:Debian) not G@virtual:container not G@app:appliance":
@@ -78,7 +79,7 @@ base:
     - nginx.containerd
   "G@app:containerd and G@app:acme":
     - match: compound
-    - acme.containerd
+    - acme.containere2aHbud
 
   "app:gitlab":
     - match: grain
