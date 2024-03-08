@@ -40,7 +40,7 @@ telegraf_conf_dir:
 # Base telegraf configuration
 telegraf_conf:
   file.managed:
-    - name: /etc/telegraf/telegraf.conf
+    - name: /etc/telegraf/files/telegraf.conf
     - source: salt://telegraf/telegraf.conf
     - user: root
     - group: root
