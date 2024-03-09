@@ -64,10 +64,9 @@ Subsystem       sftp    /usr/libexec/openssh/sftp-server
 
 # Restrict key exchange, cipher, and MAC algorithms, as per sshaudit.com
 # hardening guide.
-
 {% if salt['cmd.run']("ssh -V 2>&1 | grep -oE 'OpenSSH_[0-9]+\.[0-9]+' | cut -b 9-", python_shell=True) | float >= 8.7 %}
 RequiredRSASize 3072
-{% endif %}
+{%- endif %}
 
 KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
 
