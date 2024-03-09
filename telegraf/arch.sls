@@ -11,6 +11,6 @@ telegraf_build:
   cmd.run:
     - name: makepkg -risc --noconfirm
     - cwd: /home/{{ common.primary_user.username }}/build/telegraf-bin/
-    - user: {{ common.primary_user.username }}
+    - runas: {{ common.primary_user.username }}
     - onchanges:
       - git: telegraf_aur_git

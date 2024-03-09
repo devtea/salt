@@ -1,31 +1,31 @@
 {% from "telegraf/map.jinja" import telegraf with context %}
 
 {% if grains["os_family"] == "Debian" %}
-include: 
+include:
   - telegraf.debian
 
 telegraf_pkg:
   pkg.installed:
     - name: telegraf
-    - require: 
+    - require:
       - sls: telegraf.debian
     - require_in:
       - file: telegraf_conf
 
 {% elif grains["os_family"] == "RedHat" %}
-include: 
+include:
   - telegraf.redhat
 
 telegraf_pkg:
   pkg.installed:
     - name: telegraf
-    - require: 
+    - require:
       - sls: telegraf.redhat
     - require_in:
       - file: telegraf_conf
 
 {% elif grains["os_family"] == "Arch" %}
-include: 
+include:
   - telegraf.arch
 
 {% endif %}
