@@ -44,9 +44,8 @@ tailscale_systemd_reload:
       - file: tailscale_exit_transport_layer_offloads
 
 tailscale_exit_transport_layer_offloads_enable:
-  service.running:
+  service.enabled:
     - name: tailscale_udp_offload
-    - enable: True
     - require:
       - cmd: tailscale_systemd_reload
     - watch:
