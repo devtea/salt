@@ -79,7 +79,7 @@ telegraf_service:
   service.running:
     - name: telegraf
     - enable: True
-    - require:
+    - watch:
       - file: telegraf_conf
       - file: telegraf_default_inputs_conf
       - file: telegraf_influxdb_output_conf
