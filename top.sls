@@ -9,6 +9,13 @@ base:
   "app:auto_highstate":
     - match: grain
     - salt.auto_highstate
+
+  #
+  # Common
+  #
+  "*":
+    - salt.minion
+
   #
   # Common items unless app:appliance is set
   #
@@ -16,7 +23,6 @@ base:
     - match: compound
     - common
     - common.users
-    - salt.minion
     - sshd
     - tailscale
     - telegraf
@@ -144,3 +150,7 @@ base:
   "app:telegraf_influxdb_oss_monitor":
     - match: grain
     - telegraf.influxdb
+  # Proxmox monitoring with telegraf
+  "G@app:telegraf and G@app:proxmox":
+    - match: compound
+    - telegraf.proxmox
