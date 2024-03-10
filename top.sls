@@ -136,7 +136,11 @@ base:
     - match: grain
     - tilt
 
-  # Telegraf server monitoring
+  # Generic server monitoring with telegraf
   "app:telegraf":
     - match: grain
     - telegraf
+  # monitoring influxdb oss metrics with telegraf
+  "app:telegraf_influxdb_oss_monitor":
+    - match: grain
+    - telegraf.influxdb
