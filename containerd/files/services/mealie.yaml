@@ -1,7 +1,7 @@
 ---
 services:
   mealie:
-    image: ghcr.io/mealie-recipes/mealie:v1.3.0 
+    image: ghcr.io/mealie-recipes/mealie:v1.3.2 
     container_name: mealie
     ports:
       - "{{ containerd.services_conf.mealie.port }}:9000"
