@@ -1,6 +1,6 @@
 ---
 services:
-  {{ service }}6
+  {{ service }}
     image: influxdb:2.7.6
     container_name: {{ service }}
     deploy:
