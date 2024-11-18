@@ -236,7 +236,7 @@ rejected_retry: True
 # example, setting this value to 60 will choose a random number of seconds to delay
 # on startup between zero seconds and sixty seconds. Setting to '0' will disable
 # this feature.
-random_startup_delay: 30
+random_startup_delay: 10
 
 # When waiting for a master to accept the minion's public key, salt will
 # continuously attempt to reconnect until successful. This is the timeout value,
