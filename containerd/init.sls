@@ -53,7 +53,7 @@ containerd_rootless_testing:
     - runas: {{ common.primary_user.username }}
     - cwd: /home/{{ common.primary_user.username }}/
     - env: 
-        BASH_ENV: /home/{{ common.primary_user.username }}/.bashrc
+        BASH_ENV: /etc/profile
     - require:
       - pkg: containerd_pkg
 
