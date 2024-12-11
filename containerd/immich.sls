@@ -1,5 +1,6 @@
 {% from "containerd/map.jinja" import containerd with context %}
 {% from "common/map.jinja" import common with context %}
+{% set immich = salt['pillar.get']('immich') %}
 {% set service = "immich" %}
 
 # Additional customizations for immich
@@ -13,5 +14,6 @@ immich_env_file:
     - template: jinja
     - context:
         containerd: {{ containerd | tojson }}
+        immich: {{ immich | tojson }}
     - require:
       - file: containerd_root
