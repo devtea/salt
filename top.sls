@@ -154,3 +154,8 @@ base:
   "G@app:telegraf and G@app:proxmox":
     - match: compound
     - telegraf.proxmox
+
+  # additional states for immich
+  "containerd:services:immich":
+    - match: grain
+    - containerd.immich
