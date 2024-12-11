@@ -46,6 +46,7 @@ containerd_reboot:
       - file: containerd_controller_delegation
       - file: containerd_boot_loader_override
     - order: last
+
 containerd_rootless_testing:
   cmd.run:
     - name: systemctl --user show-environment
@@ -53,7 +54,6 @@ containerd_rootless_testing:
     - cwd: /home/{{ common.primary_user.username }}/
     - python_shell: True
     - require:
-    
       - pkg: containerd_pkg
 
 containerd_rootless_setup:
