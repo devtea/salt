@@ -63,7 +63,6 @@ containerd_rootless_setup:
     - runas: {{ common.primary_user.username }}
     - cwd: /home/{{ common.primary_user.username }}/
     - creates: /home/{{ common.primary_user.username }}/.config/systemd/user/containerd.service
-    - python_shell: True
     - require:
       - pkg: containerd_pkg
 
