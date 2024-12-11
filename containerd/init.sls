@@ -48,12 +48,12 @@ containerd_reboot:
     - order: last
 
 containerd_rootless_testing:
-  cmd.run:
-    - name: systemctl --user show-environment
+  module.run:
+    - name: cmd.run
+    - cmd: systemctl --user start dbus; systemctl --user show-environment
     - runas: {{ common.primary_user.username }}
     - cwd: /home/{{ common.primary_user.username }}/
-    - env: 
-        BASH_ENV: /etc/profile
+    - python_shell: True
     - require:
       - pkg: containerd_pkg
 
