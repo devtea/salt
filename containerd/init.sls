@@ -47,16 +47,7 @@ containerd_reboot:
       - file: containerd_boot_loader_override
     - order: last
 
-containerd_rootless_testing:
-  module.run:
-    - name: cmd.run
-    - cmd: systemctl --user start dbus; systemctl --user show-environment
-    - runas: {{ common.primary_user.username }}
-    - cwd: /home/{{ common.primary_user.username }}/
-    - python_shell: True
-    - require:
-      - pkg: containerd_pkg
-
+# Might have to be done manually >_<
 containerd_rootless_setup:
   cmd.run:
     - name: /usr/bin/containerd-rootless-setuptool.sh install
