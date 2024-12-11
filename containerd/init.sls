@@ -52,7 +52,8 @@ containerd_rootless_testing:
     - name: systemctl --user show-environment
     - runas: {{ common.primary_user.username }}
     - cwd: /home/{{ common.primary_user.username }}/
-    - python_shell: True
+    - env: 
+        BASH_ENV: /home/{{ common.primary_user.username }}/.bashrc
     - require:
       - pkg: containerd_pkg
 
