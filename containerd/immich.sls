@@ -1,6 +1,6 @@
 {% from "containerd/map.jinja" import containerd with context %}
 {% from "common/map.jinja" import common with context %}
-{% set service = immich %}
+{% set service = "immich" %}
 
 # Additional customizations for immich
 immich_env_file:
