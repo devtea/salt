@@ -48,9 +48,8 @@ containerd_reboot:
     - order: last
 
 containerd_rootless_testing:
-  module.run:
-    - name: cmd.run
-    - cmd: systemctl --user show-environment
+  cmd.run:
+    - name: systemctl --user show-environment
     - runas: {{ common.primary_user.username }}
     - cwd: /home/{{ common.primary_user.username }}/
     - python_shell: True
