@@ -41,10 +41,20 @@ containerd_controller_delegation:
 containerd_reboot:
   module.run:
     - name: system.reboot
+    - at_time: 2
     - onchanges:
       - file: containerd_controller_delegation
       - file: containerd_boot_loader_override
     - order: last
+containerd_rootless_testing:
+  cmd.run:
+    - name: systemctl --user show-environment
+    - runas: {{ common.primary_user.username }}
+    - cwd: /home/{{ common.primary_user.username }}/
+    - python_shell: True
+    - require:
+    
+      - pkg: containerd_pkg
 
 containerd_rootless_setup:
   cmd.run:
@@ -52,6 +62,7 @@ containerd_rootless_setup:
     - runas: {{ common.primary_user.username }}
     - cwd: /home/{{ common.primary_user.username }}/
     - creates: /home/{{ common.primary_user.username }}/.config/systemd/user/containerd.service
+    - python_shell: True
     - require:
       - pkg: containerd_pkg
 
