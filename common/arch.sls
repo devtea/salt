@@ -32,10 +32,3 @@ aur_build_dir:
     - group: {{ common.primary_user.group }}
     - mode: '0755'
 
-arch_mirrorlist:
-  file.managed:
-    - name: /etc/pacman.d/mirrorlist
-    - source: salt://common/files/arch_mirrorlist
-    - user: root
-    - group: root
-    - mode: '0644'

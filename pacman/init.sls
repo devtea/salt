@@ -17,3 +17,11 @@ pacman_hooks:
     - clean: False
     - require:
       - file: pacman_find_sh
+
+arch_mirrorlist:
+  file.managed:
+    - name: /etc/pacman.d/mirrorlist
+    - source: salt://pacman/files/arch_mirrorlist_{{ salt["grains.get]("geo", default="home") }}
+    - user: root
+    - group: root
+    - mode: '0644'
