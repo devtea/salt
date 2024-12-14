@@ -4,7 +4,8 @@
 
 # Disable the service if the system has less than ~512MB of RAM or only one cpu
 # This will typically be the case for small embedded devices such as the 
-# Raspberry Pi Zero
-{% if grains["mem_total"] < 1024 or grains["num_cpus"] <= 1 %}
+# Raspberry Pi Zero. Otherwise you can set the salt_conf.service_enable grain 
+# to False to disable the service.
+{% if grains["mem_total"] < 600 or grains["num_cpus"] <= 1 %}
     {% do salt_conf.update({"service_enable": False}) %}
 {% endif %}

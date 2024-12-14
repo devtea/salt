@@ -8,6 +8,7 @@ salt_minion_config:
     - context:
         salt_conf: {{ salt_conf | tojson }}
 
+# set the grain salt_conf.service_enable to false to disable the service
 {% if salt_conf.service_enable %}
 salt_minion_service:
   service.running:
