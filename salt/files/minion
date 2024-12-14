@@ -16,7 +16,7 @@
 {% if salt_conf.master_ip -%}
 master: {{ salt_conf.master_ip }}
 {% else -%}
-master: {{ salt_conf.master_hostname }}
+master: {{ salt_conf.minion.master_hostname }}
 {% endif -%}
 
 # Set http proxy information for the minion when doing requests
