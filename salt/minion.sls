@@ -4,6 +4,9 @@ salt_minion_config:
   file.managed:
     - name: /etc/salt/minion
     - source: salt://salt/files/minion
+    - template: jinja
+    - context:
+        salt_conf: {{ salt_conf | tojson }}
 
 {% if salt_conf.service_enable %}
 salt_minion_service:

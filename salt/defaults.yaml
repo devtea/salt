@@ -1,2 +1,5 @@
 salt_conf:
   service_enable: True
+  minion:
+    master_ip: ""
+    master_hostname: "salt"
