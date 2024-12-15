@@ -163,6 +163,7 @@ base:
   "app:nfs_client":
     - match: grain
     - nfs.client
+    - nfs.mount
   
   "app:nfs_server":
     - match: grain
