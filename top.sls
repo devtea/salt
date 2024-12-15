@@ -159,3 +159,11 @@ base:
   "containerd:services:immich":
     - match: grain
     - containerd.immich
+
+  "app:nfs_client":
+    - match: grain
+    - nfs-formula.nfs.client
+  
+  "app:nfs_server":
+    - match: grain
+    - nfs-formula.nfs.server
