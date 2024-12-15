@@ -807,6 +807,7 @@ gitfs_remotes:
   - "{{ salt.master.states_git }}":
     - base: main
     - ssl_verify: True
+  - https://github.com/devtea/nfs-formula.git
 
 # The gitfs_ssl_verify option specifies whether to ignore ssl certificate
 # errors when contacting the gitfs backend. You might want to set this to

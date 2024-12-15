@@ -162,8 +162,8 @@ base:
 
   "app:nfs_client":
     - match: grain
-    - nfs-formula.nfs.client
+    - nfs.client
   
   "app:nfs_server":
     - match: grain
-    - nfs-formula.nfs.server
+    - nfs.server
