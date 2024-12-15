@@ -160,11 +160,13 @@ base:
     - match: grain
     - containerd.immich
 
+  # Using the NFS Formula
   "app:nfs_client":
     - match: grain
     - nfs.client
     - nfs.mount
   
+  # Using the NFS Formula
   "app:nfs_server":
     - match: grain
     - nfs.server
