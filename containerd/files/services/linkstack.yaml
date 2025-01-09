@@ -1,6 +1,6 @@
 services:
   linkstack:
-    image: linkstackorg/linkstack:latest
+    image: linkstackorg/linkstack:4.8.4
     environment:
       - TZ=America/chicago
       - SERVER_ADMIN=admin@example.xyz
